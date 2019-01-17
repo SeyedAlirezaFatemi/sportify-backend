@@ -1,5 +1,7 @@
 from django.db import models
 
+from sport.models.people import BasketballPlayer, SoccerPlayer
+
 
 class Game(models.Model):
     play_date = models.DateTimeField()
@@ -47,11 +49,6 @@ class BasketballGameTeamStatistic(models.Model):
     fourth_quarter_points = models.IntegerField(default=0)
 
 
-class SoccerGame(Game):
-    home = models.OneToOneField(to=SoccerGameTeamStatistic, on_delete=models.CASCADE)
-    away = models.OneToOneField(to=SoccerGameTeamStatistic, on_delete=models.CASCADE)
-
-
 class Event(models.Model):
     event_time = models.TimeField(verbose_name='Time')
     events = (
@@ -67,8 +64,34 @@ class Event(models.Model):
         'Rebound',
     )
     event_type = models.CharField(choices=events)
+    game = models.ForeignKey(to=Game, on_delete=models.CASCADE)
+
+
+class BasketballPlayerGameStatistics(models.Model):
+    game = models.ForeignKey(to=Game, on_delete=models.CASCADE)
+    player = models.ForeignKey(to=BasketballPlayer, on_delete=models.CASCADE)
+    twos = models.IntegerField(default=0)
+    threes = models.IntegerField(default=0)
+    minutes_played = models.IntegerField(default=0)
+    rebounds = models.IntegerField(default=0)
+    fouls = models.IntegerField(default=0)
+
+
+class GameImage(models.Model):
+    image = models.ImageField()
+    game = models.ForeignKey(to=Game, on_delete=models.CASCADE)
+
+
+class SoccerGame(Game):
+    home = models.OneToOneField(to=SoccerGameTeamStatistic, on_delete=models.CASCADE)
+    away = models.OneToOneField(to=SoccerGameTeamStatistic, on_delete=models.CASCADE)
+    starters = models.ManyToManyField(to=SoccerPlayer)
+    bench = models.ManyToManyField(to=SoccerPlayer)
+    best_player = models.ForeignKey(to=SoccerPlayer, on_delete=models.SET_NULL)
 
 
 class BasketballGame(Game):
-    home = models.OneToOneField(to=SoccerGameTeamStatistic, on_delete=models.CASCADE)
-    away = models.OneToOneField(to=SoccerGameTeamStatistic, on_delete=models.CASCADE)
+    home = models.OneToOneField(to=BasketballGameTeamStatistic, on_delete=models.CASCADE)
+    away = models.OneToOneField(to=BasketballGameTeamStatistic, on_delete=models.CASCADE)
+    starters = models.ManyToManyField(to=BasketballPlayer)
+    bench = models.ManyToManyField(to=BasketballPlayer)
