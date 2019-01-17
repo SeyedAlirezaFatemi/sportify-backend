@@ -7,7 +7,7 @@ class Tag(models.Model):
 
 
 class News(models.Model):
-    author = models.ForeignKey(to=User)
+    author = models.ForeignKey(to=User, on_delete=models.CASCADE)
     title = models.CharField()
     text = models.CharField()
     pub_date = models.DateTimeField()
@@ -16,7 +16,7 @@ class News(models.Model):
 
 
 class Comment(models.Model):
-    author = models.ForeignKey(to=User)
+    author = models.ForeignKey(to=User, on_delete=models.CASCADE)
     text = models.CharField()
     pub_date = models.DateTimeField()
-    news = models.ForeignKey(to=News)
+    news = models.ForeignKey(to=News, on_delete=models.CASCADE)
