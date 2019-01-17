@@ -3,10 +3,15 @@ from django.db import models
 from sport.models.people import BasketballPlayer, SoccerPlayer
 
 
+class League(models.Model):
+    name = models.CharField()
+    beginning_year = models.IntegerField()
+    end_year = models.IntegerField()
+
+
 class Game(models.Model):
     play_date = models.DateTimeField()
-
-    # duration = models.TimeField()
+    league = models.ForeignKey(to=League, on_delete=models.SET_NULL)
 
     class Meta:
         abstract = True
