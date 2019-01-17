@@ -13,6 +13,7 @@ class News(models.Model):
     pub_date = models.DateTimeField()
     image = models.ImageField()
     tags = models.ManyToManyField(to=Tag)
+    related_news = models.ManyToManyField(to="self")
 
 
 class Comment(models.Model):
