@@ -1,5 +1,7 @@
 from django.db import models
 
+from sport.models.game import BasketballTeam, SoccerTeam
+
 
 class Person(models.Model):
     name = models.CharField()
@@ -20,14 +22,22 @@ class Person(models.Model):
 
 
 class SoccerPlayer(Person):
-    pass
+    team = models.ForeignKey(to=SoccerTeam, on_delete=models.SET_NULL)
 
 
 class BasketballPlayer(Person):
-    pass
+    team = models.ForeignKey(to=BasketballTeam, on_delete=models.SET_NULL)
 
 
-class SoccerPlayerSeason(models.Model):
+class Season(models.Model):
+    beginning = models.DateField()
+    end = models.DateField()
+
+    class Meta:
+        abstract = True
+
+
+class SoccerPlayerSeason(Season):
     player = models.ForeignKey(to=SoccerPlayer, on_delete=models.CASCADE)
     goals = models.IntegerField(default=0)
     assists = models.IntegerField(default=0)
@@ -35,7 +45,7 @@ class SoccerPlayerSeason(models.Model):
     yellows = models.IntegerField(default=0)
 
 
-class BasketballPlayerSeason(models.Model):
+class BasketballPlayerSeason(Season):
     player = models.ForeignKey(to=BasketballPlayer, on_delete=models.CASCADE)
     twos = models.IntegerField(default=0)
     threes = models.IntegerField(default=0)
