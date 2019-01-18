@@ -3,13 +3,13 @@ from django.db import models
 
 
 class Tag(models.Model):
-    title = models.CharField(unique=True)
+    title = models.CharField(max_length=20, unique=True)
 
 
 class News(models.Model):
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    title = models.CharField()
-    text = models.CharField()
+    title = models.CharField(max_length=100)
+    text = models.CharField(max_length=50000)
     pub_date = models.DateTimeField()
     image = models.ImageField()
     tags = models.ManyToManyField(to=Tag)
@@ -18,6 +18,6 @@ class News(models.Model):
 
 class Comment(models.Model):
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    text = models.CharField()
+    text = models.CharField(max_length=500)
     pub_date = models.DateTimeField()
     news = models.ForeignKey(to=News, on_delete=models.CASCADE)
