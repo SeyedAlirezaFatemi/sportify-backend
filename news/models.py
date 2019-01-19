@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
 
 
@@ -10,7 +10,7 @@ class Tag(models.Model):
 
 
 class News(models.Model):
-    author = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    author = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     text = models.CharField(max_length=50000)
     pub_date = models.DateTimeField()
@@ -27,7 +27,7 @@ class News(models.Model):
 
 
 class Comment(models.Model):
-    author = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    author = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.CharField(max_length=500)
     pub_date = models.DateTimeField()
     news = models.ForeignKey(to=News, on_delete=models.CASCADE)
