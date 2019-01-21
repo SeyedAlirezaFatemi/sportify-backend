@@ -1,11 +1,8 @@
 from django.utils import timezone
 
-from sport.models import SoccerGame, SoccerGameTeamStatistic, SoccerPlayer, SoccerTeam
 from authentication.models import User
 from news.models import News, Tag
-from sport.models import SoccerPlayer, SoccerTeam, SoccerPlayerSeason, Person
-from django.utils import timezone
-
+from sport.models import Person, SoccerGame, SoccerGameTeamStatistic, SoccerPlayer, SoccerPlayerSeason, SoccerTeam
 
 peikan = SoccerTeam(name='Peikan')
 peikan.save()
@@ -13,9 +10,9 @@ peikan.save()
 ahmad = SoccerPlayer(team=peikan, name='Ahmad', age=24, nationality='Iran', position='Defender')
 ahmad.save()
 
-ahmad_season_1 = SoccerPlayerSeason(player=ahmad, beginning=timezone.now() - timezone.timedelta(days=150), end=timezone.now(), goals=10, assists=2, reds=0, yellows=1)
+ahmad_season_1 = SoccerPlayerSeason(player=ahmad, beginning=timezone.now() - timezone.timedelta(days=150),
+                                    end=timezone.now(), goals=10, assists=2, reds=0, yellows=1)
 ahmad_season_1.save()
-
 
 tag1 = Tag(title='Lebron')
 tag2 = Tag(title='Lakers')

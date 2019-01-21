@@ -1,14 +1,11 @@
 from django.db.models import Q
 from rest_framework import generics
 
-from sport.models import BasketballGame, BasketballPlayer, SoccerGame, SoccerPlayer
-from sport.serializers.game_serializer import BasketballImagesSerializer, SoccerImagesSerializer
-from sport.models import *
 from news.models import News
-from sport.serializers.game_serializer import LeagueSerializer
-from sport.serializers.player_serializer import *
 from news.serializers import NewsSerializer
-from sport.models import SoccerPlayer
+from sport.models import *
+from sport.serializers.game_serializer import BasketballImagesSerializer, LeagueSerializer, SoccerImagesSerializer
+from sport.serializers.player_serializer import *
 from sport.serializers.player_serializer import BasketballPlayerSeason, BasketballPlayerSeasonSerializer, \
     BasketballPlayerSerializer, SoccerPlayerSeason, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
 
