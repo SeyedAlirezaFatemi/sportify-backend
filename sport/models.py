@@ -66,6 +66,8 @@ class League(models.Model):
 class Game(models.Model):
     play_date = models.DateTimeField()
     league = models.ForeignKey(to=League, on_delete=models.SET_NULL, null=True)
+    home_score = models.IntegerField(default=-1)
+    away_score = models.IntegerField(default=-1)
 
     class Meta:
         abstract = True

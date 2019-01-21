@@ -1,10 +1,12 @@
 from django.db.models import Q
+from django.utils import timezone
 from rest_framework import generics
 
 from news.models import News
 from news.serializers import NewsSerializer
 from sport.models import *
-from sport.serializers.game_serializer import BasketballImagesSerializer, LeagueSerializer, SoccerImagesSerializer
+from sport.serializers.game_serializer import BasketballImagesSerializer, LeagueSerializer, SoccerImagesSerializer, \
+    SoccerGameSerializer, BasketballGameSerializer
 from sport.serializers.player_serializer import *
 from sport.serializers.player_serializer import BasketballPlayerSeason, BasketballPlayerSeasonSerializer, \
     BasketballPlayerSerializer, SoccerPlayerSeason, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
@@ -97,4 +99,60 @@ class LatestLeagues(generics.ListAPIView):
 class LeagueInfo(generics.RetrieveAPIView):
     serializer_class = LeagueSerializer
     queryset = League.objects.all()
+
+
+class YesterdaySoccerGame(generics.ListAPIView):
+    yesterday = timezone.now() - timezone.timedelta(days=1)
+    serializer_class = SoccerGameSerializer
+    queryset = SoccerGame.objects.filter(Q(play_date__year=yesterday.year) &
+                                         Q(play_date__month=yesterday.month) &
+                                           Q(play_date__day=yesterday.day))
+
+
+class TomorrowSoccerGame(generics.ListAPIView):
+    tomorrow = timezone.now() + timezone.timedelta(days=1)
+    serializer_class = SoccerGameSerializer
+    queryset = SoccerGame.objects.filter(Q(play_date__year=tomorrow.year) &
+                                         Q(play_date__month=tomorrow.month) &
+                                           Q(play_date__day=tomorrow.day))
+
+
+class TodaySoccerGame(generics.ListAPIView):
+    serializer_class = SoccerGameSerializer
+    queryset = SoccerGame.objects.filter(Q(play_date__year=timezone.now().year) &
+                                         Q(play_date__month=timezone.now().month) &
+                                           Q(play_date__day=timezone.now().day))
+
+
+class YesterdayBasketballGame(generics.ListAPIView):
+    yesterday = timezone.now() - timezone.timedelta(days=1)
+    serializer_class = BasketballGameSerializer
+    queryset = BasketballGame.objects.filter(Q(play_date__year=yesterday.year) &
+                                         Q(play_date__month=yesterday.month) &
+                                           Q(play_date__day=yesterday.day))
+
+
+class TomorrowBasketballGame(generics.ListAPIView):
+    tomorrow = timezone.now() + timezone.timedelta(days=1)
+    serializer_class = BasketballGameSerializer
+    queryset = BasketballGame.objects.filter(Q(play_date__year=tomorrow.year) &
+                                         Q(play_date__month=tomorrow.month) &
+                                           Q(play_date__day=tomorrow.day))
+
+
+class TodayBasketballGame(generics.ListAPIView):
+    serializer_class = BasketballGameSerializer
+    queryset = BasketballGame.objects.filter(Q(play_date__year=timezone.now().year) &
+                                         Q(play_date__month=timezone.now().month) &
+                                           Q(play_date__day=timezone.now().day))
+
+
+class LatestSoccerGames(generics.ListAPIView):
+    serializer_class = SoccerGameSerializer
+    queryset = SoccerGame.objects.all().order_by('-play_date')[:5]
+
+
+class LatestBasketballGames(generics.ListAPIView):
+    serializer_class = BasketballGameSerializer
+    queryset = BasketballGame.objects.all().order_by('-play_date')[:5]
 
