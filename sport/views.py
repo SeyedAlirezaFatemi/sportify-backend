@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from sport.models import BasketballPlayerSeason, SoccerPlayerSeason
-from sport.serializers.player_serializer import BasketballPlayerSeasonSerializer, SoccerPlayerSeasonSerializer
+from sport.serializers.player_serializer import BasketballPlayerSeasonSerializer, BasketballPlayerSeason, \
+    SoccerPlayerSeason, SoccerPlayerSeasonSerializer
 
 
 class BasketballPlayerStatistics(generics.RetrieveAPIView):
