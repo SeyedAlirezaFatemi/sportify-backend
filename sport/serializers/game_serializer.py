@@ -1,7 +1,8 @@
 from rest_framework.serializers import ModelSerializer
 
-from sport.models import Game, SoccerGameTeamStatistic, BasketballGameTeamStatistic, BasketballPlayerGameStatistics, \
-    SoccerGameImage, BasketballGameImage, SoccerGame, BasketballGame, Team, SoccerTeam, BasketballTeam
+from sport.models import BasketballGame, BasketballGameImage, BasketballGameTeamStatistic, \
+    BasketballPlayerGameStatistics, BasketballTeam, Game, SoccerGame, SoccerGameImage, SoccerGameTeamStatistic, \
+    SoccerTeam, Team
 
 
 class GameSerializer(ModelSerializer):

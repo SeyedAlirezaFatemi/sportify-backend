@@ -1,6 +1,6 @@
 from rest_framework import generics
 
-from sport.serializers.player_serializer import BasketballPlayerSeasonSerializer, BasketballPlayerSeason, \
+from sport.serializers.player_serializer import BasketballPlayerSeason, BasketballPlayerSeasonSerializer, \
     SoccerPlayerSeason, SoccerPlayerSeasonSerializer
 
 
