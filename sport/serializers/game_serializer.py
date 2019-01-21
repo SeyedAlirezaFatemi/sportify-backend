@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from sport.models.game import *
+from sport.models import *
 
 
 class GameSerializer(ModelSerializer):
@@ -31,9 +31,16 @@ class BasketballPlayerGameStatisticsSerializer(ModelSerializer):
         depth = 1
 
 
-class GameImageSerializer(ModelSerializer):
+class SoccerGameImageSerializer(ModelSerializer):
     class Meta:
-        model = GameImage
+        model = SoccerGameImage
+        fields = "__all__"
+        depth = 1
+
+
+class BasketballGameImageSerializer(ModelSerializer):
+    class Meta:
+        model = BasketballGameImage
         fields = "__all__"
         depth = 1
 

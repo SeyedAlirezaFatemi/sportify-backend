@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from sport.models.people import *
+from sport.models import *
 
 
 class PersonSerializer(ModelSerializer):
