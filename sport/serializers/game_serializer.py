@@ -37,14 +37,12 @@ class SoccerGameImageSerializer(ModelSerializer):
     class Meta:
         model = SoccerGameImage
         fields = "__all__"
-        depth = 1
 
 
 class BasketballGameImageSerializer(ModelSerializer):
     class Meta:
         model = BasketballGameImage
         fields = "__all__"
-        depth = 1
 
 
 class SoccerGameSerializer(ModelSerializer):
@@ -79,4 +77,18 @@ class BasketballTeamSerializer(ModelSerializer):
     class Meta:
         model = BasketballTeam
         fields = "__all__"
+        depth = 1
+
+
+class SoccerImagesSerializer(ModelSerializer):
+    class Meta:
+        model = SoccerGame
+        fields = ('image',)
+        depth = 1
+
+
+class BasketballImagesSerializer(ModelSerializer):
+    class Meta:
+        model = BasketballGame
+        fields = ('image',)
         depth = 1

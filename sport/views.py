@@ -1,6 +1,7 @@
 from rest_framework import generics
 
-from sport.models import BasketballPlayer, SoccerPlayer
+from sport.models import BasketballGame, BasketballPlayer, SoccerGame, SoccerPlayer
+from sport.serializers.game_serializer import BasketballImagesSerializer, SoccerImagesSerializer
 from sport.serializers.player_serializer import BasketballPlayerSeason, BasketballPlayerSeasonSerializer, \
     BasketballPlayerSerializer, SoccerPlayerSeason, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
 
@@ -23,3 +24,13 @@ class SoccerPlayerInfo(generics.RetrieveAPIView):
 class BasketballPlayerInfo(generics.RetrieveAPIView):
     queryset = BasketballPlayer.objects.all()
     serializer_class = BasketballPlayerSerializer
+
+
+class SoccerGameImages(generics.RetrieveAPIView):
+    queryset = SoccerGame.objects.all()
+    serializer_class = SoccerImagesSerializer
+
+
+class BasketballGameImages(generics.RetrieveAPIView):
+    queryset = BasketballGame.objects.all()
+    serializer_class = BasketballImagesSerializer

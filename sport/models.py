@@ -121,12 +121,12 @@ class BasketballGame(Game):
 
 class SoccerGameImage(models.Model):
     image = models.ImageField()
-    game = models.ForeignKey(to=SoccerGame, on_delete=models.CASCADE)
+    game = models.ForeignKey(to=SoccerGame, related_name='images', on_delete=models.CASCADE)
 
 
 class BasketballGameImage(models.Model):
     image = models.ImageField()
-    game = models.ForeignKey(to=BasketballGame, on_delete=models.CASCADE)
+    game = models.ForeignKey(to=BasketballGame, related_name='images', on_delete=models.CASCADE)
 
 
 class SoccerEvent(models.Model):
