@@ -1,8 +1,8 @@
 from rest_framework import generics
 
-from sport.models import SoccerPlayer
+from sport.models import BasketballPlayer, SoccerPlayer
 from sport.serializers.player_serializer import BasketballPlayerSeason, BasketballPlayerSeasonSerializer, \
-    SoccerPlayerSeason, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
+    BasketballPlayerSerializer, SoccerPlayerSeason, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
 
 
 class BasketballPlayerStatistics(generics.RetrieveAPIView):
@@ -18,3 +18,8 @@ class SoccerPlayerStatistics(generics.RetrieveAPIView):
 class SoccerPlayerInfo(generics.RetrieveAPIView):
     queryset = SoccerPlayer.objects.all()
     serializer_class = SoccerPlayerSerializer
+
+
+class BasketballPlayerInfo(generics.RetrieveAPIView):
+    queryset = BasketballPlayer.objects.all()
+    serializer_class = BasketballPlayerSerializer
