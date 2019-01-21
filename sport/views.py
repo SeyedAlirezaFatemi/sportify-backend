@@ -35,3 +35,8 @@ class PlayerRelatedNews(generics.ListAPIView):
 class SoccerPlayerInfo(generics.RetrieveAPIView):
     queryset = SoccerPlayer.objects.all()
     serializer_class = SoccerPlayerSerializer
+
+
+class PlayerImages(generics.ListAPIView):
+    serializer_class = PersonSerializer
+    queryset = PlayerImage.objects.all()
