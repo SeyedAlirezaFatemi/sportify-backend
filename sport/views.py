@@ -92,3 +92,9 @@ class PlayerImages(generics.ListAPIView):
 class LatestLeagues(generics.ListAPIView):
     serializer_class = LeagueSerializer
     queryset = League.objects.all().order_by('-beginning_year')[:5]
+
+
+class LeagueInfo(generics.RetrieveAPIView):
+    serializer_class = LeagueSerializer
+    queryset = League.objects.all()
+

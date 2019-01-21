@@ -10,6 +10,5 @@ class NewsDetail(generics.RetrieveAPIView):
 
 
 class LatestNews(generics.ListAPIView):
-    queryset = News.objects.all()
+    queryset = News.objects.all().order_by("-pub_date")[:5]
     serializer_class = NewsSerializer
-
