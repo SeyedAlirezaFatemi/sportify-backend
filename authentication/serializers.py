@@ -1,5 +1,4 @@
 from rest_auth.registration.serializers import RegisterSerializer, serializers
-
 from authentication.models import User
 
 
