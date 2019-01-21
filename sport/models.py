@@ -172,3 +172,4 @@ class BasketballPlayerGameStatistics(models.Model):
     minutes_played = models.IntegerField(default=0)
     rebounds = models.IntegerField(default=0)
     fouls = models.IntegerField(default=0)
+

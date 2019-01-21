@@ -6,7 +6,7 @@ from news.models import News
 from news.serializers import NewsSerializer
 from sport.models import *
 from sport.serializers.game_serializer import BasketballImagesSerializer, LeagueSerializer, SoccerImagesSerializer, \
-    SoccerGameSerializer, BasketballGameSerializer
+    SoccerGameSerializer, BasketballGameSerializer, TeamSerializer, BasketballTeamSerializer, SoccerTeamSerializer
 from sport.serializers.player_serializer import *
 from sport.serializers.player_serializer import BasketballPlayerSeason, BasketballPlayerSeasonSerializer, \
     BasketballPlayerSerializer, SoccerPlayerSeason, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
@@ -61,8 +61,7 @@ class BasketballTeamPlayers(generics.ListAPIView):
 
     def get_queryset(self):
         team_id = self.kwargs['pk']
-        team = BasketballTeam.objects.get(id=team_id)
-        queryset = BasketballPlayer.objects.filter(team=team)
+        queryset = BasketballPlayer.objects.filter(team_id=team_id)
         return queryset
 
 
@@ -106,7 +105,7 @@ class YesterdaySoccerGame(generics.ListAPIView):
     serializer_class = SoccerGameSerializer
     queryset = SoccerGame.objects.filter(Q(play_date__year=yesterday.year) &
                                          Q(play_date__month=yesterday.month) &
-                                           Q(play_date__day=yesterday.day))
+                                         Q(play_date__day=yesterday.day))
 
 
 class TomorrowSoccerGame(generics.ListAPIView):
@@ -114,37 +113,37 @@ class TomorrowSoccerGame(generics.ListAPIView):
     serializer_class = SoccerGameSerializer
     queryset = SoccerGame.objects.filter(Q(play_date__year=tomorrow.year) &
                                          Q(play_date__month=tomorrow.month) &
-                                           Q(play_date__day=tomorrow.day))
+                                         Q(play_date__day=tomorrow.day))
 
 
 class TodaySoccerGame(generics.ListAPIView):
     serializer_class = SoccerGameSerializer
     queryset = SoccerGame.objects.filter(Q(play_date__year=timezone.now().year) &
                                          Q(play_date__month=timezone.now().month) &
-                                           Q(play_date__day=timezone.now().day))
+                                         Q(play_date__day=timezone.now().day))
 
 
 class YesterdayBasketballGame(generics.ListAPIView):
     yesterday = timezone.now() - timezone.timedelta(days=1)
     serializer_class = BasketballGameSerializer
     queryset = BasketballGame.objects.filter(Q(play_date__year=yesterday.year) &
-                                         Q(play_date__month=yesterday.month) &
-                                           Q(play_date__day=yesterday.day))
+                                             Q(play_date__month=yesterday.month) &
+                                             Q(play_date__day=yesterday.day))
 
 
 class TomorrowBasketballGame(generics.ListAPIView):
     tomorrow = timezone.now() + timezone.timedelta(days=1)
     serializer_class = BasketballGameSerializer
     queryset = BasketballGame.objects.filter(Q(play_date__year=tomorrow.year) &
-                                         Q(play_date__month=tomorrow.month) &
-                                           Q(play_date__day=tomorrow.day))
+                                             Q(play_date__month=tomorrow.month) &
+                                             Q(play_date__day=tomorrow.day))
 
 
 class TodayBasketballGame(generics.ListAPIView):
     serializer_class = BasketballGameSerializer
     queryset = BasketballGame.objects.filter(Q(play_date__year=timezone.now().year) &
-                                         Q(play_date__month=timezone.now().month) &
-                                           Q(play_date__day=timezone.now().day))
+                                             Q(play_date__month=timezone.now().month) &
+                                             Q(play_date__day=timezone.now().day))
 
 
 class LatestSoccerGames(generics.ListAPIView):
@@ -156,3 +155,38 @@ class LatestBasketballGames(generics.ListAPIView):
     serializer_class = BasketballGameSerializer
     queryset = BasketballGame.objects.all().order_by('-play_date')[:5]
 
+
+class SoccerTeamInfo(generics.RetrieveAPIView):
+    queryset = SoccerTeam.objects.all()
+    serializer_class = SoccerTeamSerializer
+
+
+class BasketballTeamInfo(generics.RetrieveAPIView):
+    queryset = BasketballTeam.objects.all()
+    serializer_class = BasketballTeamSerializer
+
+
+class SoccerTeamGameSchedule(generics.ListAPIView):
+    serializer_class = SoccerGameSerializer
+
+    def get_queryset(self):
+        team_id = self.kwargs['pk']
+        unfinished_team_games = SoccerGame.objects.filter((Q(home__team__id=team_id) |
+                                                          Q(away__team__id=team_id)) & Q(play_date__gte=timezone.now()))
+        finished_team_games = SoccerGame.objects.filter((Q(home__team__id=team_id) |
+                                                        Q(away__team__id=team_id)) & Q(play_date__lt=timezone.now()))
+        return unfinished_team_games
+
+
+class BasketballTeamGameSchedule(generics.ListAPIView):
+    serializer_class = BasketballGameSerializer
+
+    def get_queryset(self):
+        team_id = self.kwargs['pk']
+        unfinished_team_games = BasketballGame.objects.filter((Q(home__team__id=team_id) |
+                                                              Q(away__team__id=team_id)) & Q(
+            play_date__gte=timezone.now()))
+        finished_team_games = BasketballGame.objects.filter((Q(home__team__id=team_id) |
+                                                            Q(away__team__id=team_id)) & Q(
+            play_date__lt=timezone.now()))
+        return unfinished_team_games
