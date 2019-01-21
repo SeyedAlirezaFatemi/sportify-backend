@@ -54,6 +54,16 @@ class SoccerTeamPlayers(generics.ListAPIView):
         return queryset
 
 
+class BasketballTeamPlayers(generics.ListAPIView):
+    serializer_class = SoccerPlayerSerializer
+
+    def get_queryset(self):
+        team_id = self.kwargs['pk']
+        team = BasketballTeam.objects.get(id=team_id)
+        queryset = BasketballPlayer.objects.filter(team=team)
+        return queryset
+
+
 class SoccerPlayerInfo(generics.RetrieveAPIView):
     queryset = SoccerPlayer.objects.all()
     serializer_class = SoccerPlayerSerializer
