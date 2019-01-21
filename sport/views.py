@@ -1,8 +1,7 @@
-
 from rest_framework import generics
 
-from .models.people import *
-from .serializers.player_serializer import *
+from sport.models import *
+from sport.serializers.player_serializer import *
 
 
 class BasketballPlayerStatistics(generics.RetrieveAPIView):
