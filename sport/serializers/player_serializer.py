@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from sport.models import *
+from sport.models import BasketballPlayer, BasketballPlayerSeason, Person, Season, SoccerPlayer, SoccerPlayerSeason
 
 
 class PersonSerializer(ModelSerializer):
