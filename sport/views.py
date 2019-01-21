@@ -1,6 +1,5 @@
 from rest_framework import generics
 
-from sport.models import *
 from sport.serializers.player_serializer import *
 
 
