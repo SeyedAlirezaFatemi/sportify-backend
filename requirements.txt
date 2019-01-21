@@ -1,4 +1,5 @@
 django-rest-auth
+django-cors-headers
 Django==2.1.5
 django-filter==2.0.0
 djangorestframework==3.9.0

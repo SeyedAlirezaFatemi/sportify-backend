@@ -12,6 +12,7 @@ class Tag(models.Model):
 class News(models.Model):
     author = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
+    brief = models.CharField(max_length=1000, default="")
     text = models.CharField(max_length=50000)
     pub_date = models.DateTimeField()
     image = models.ImageField()
