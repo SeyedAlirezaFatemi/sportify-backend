@@ -27,3 +27,11 @@ news1 = News(author=test_user, title='Big Explosion',
              , pub_date=timezone.now())
 news1.save()
 news1.tags.add(tag1, tag2, tag3)
+
+news2 = News(author=test_user, title="Jones 'fit and ready' to face Rangers",
+             text="""Kilmarnock manager Steve Clarke insists he will have no hesitation in playing Jordan Jones against Rangers on Wednesday.
+             The 24-year-old winger signed a pre-contract agreement with Killie's title rivals last week and will join Rangers on a four-year contract in the summer.
+             """
+             , pub_date=timezone.now())
+news2.save()
+news2.tags.add(tag3, tag4, tag5)
