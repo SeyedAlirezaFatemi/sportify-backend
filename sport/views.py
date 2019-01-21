@@ -5,10 +5,10 @@ from sport.serializers.player_serializer import *
 
 
 class BasketballPlayerStatistics(generics.RetrieveAPIView):
-    serializer_class = BasketballPlayerSerializer
-    queryset = BasketballPlayer.objects.all()
+    serializer_class = BasketballPlayerSeasonSerializer
+    queryset = BasketballPlayerSeason.objects.all()
 
 
 class SoccerPlayerStatistics(generics.RetrieveAPIView):
-    queryset = SoccerPlayer.objects.all()
-    serializer_class = SoccerPlayerSerializer
+    queryset = SoccerPlayerSeason.objects.all()
+    serializer_class = SoccerPlayerSeasonSerializer
