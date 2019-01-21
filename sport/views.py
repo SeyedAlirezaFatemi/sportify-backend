@@ -3,6 +3,7 @@ from rest_framework import generics
 
 from sport.models import *
 from news.models import News
+from sport.serializers.game_serializer import LeagueSerializer
 from sport.serializers.player_serializer import *
 from news.serializers import NewsSerializer
 from sport.models import SoccerPlayer
@@ -67,3 +68,8 @@ class BasketballPlayerInfo(generics.RetrieveAPIView):
 class PlayerImages(generics.ListAPIView):
     serializer_class = PersonSerializer
     queryset = PlayerImage.objects.all()
+
+
+class LatestLeagues(generics.ListAPIView):
+    serializer_class = LeagueSerializer
+    queryset = League.objects.all().order_by('-beginning_year')[:5]
