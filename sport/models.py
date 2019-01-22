@@ -20,16 +20,20 @@ class Person(models.Model):
     avatar = models.ImageField(verbose_name='Avatar')
 
 
-class PlayerImage(models.Model):
-    player = models.ForeignKey(to=Person, on_delete=models.CASCADE)
-
-
 class SoccerPlayer(Person):
     team = models.ForeignKey(to='SoccerTeam', on_delete=models.SET_NULL, null=True)
 
 
+class SoccerPlayerImage(models.Model):
+    player = models.ForeignKey(to=SoccerPlayer, related_name='images', on_delete=models.SET_NULL, null=True)
+
+
 class BasketballPlayer(Person):
     team = models.ForeignKey(to='BasketballTeam', on_delete=models.SET_NULL, null=True)
+
+
+class BasketballPlayerImage(models.Model):
+    player = models.ForeignKey(to=BasketballPlayer, related_name='images', on_delete=models.SET_NULL, null=True)
 
 
 class Season(models.Model):

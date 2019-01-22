@@ -5,23 +5,26 @@ from rest_framework import generics
 from news.models import News
 from news.serializers import NewsSerializer
 from sport.models import BasketballGame, BasketballPlayer, BasketballPlayerSeason, BasketballTeam, League, Person, \
-    PlayerImage, SoccerGame, SoccerPlayer, SoccerPlayerSeason, SoccerTeam, Team
+    SoccerGame, SoccerPlayer, SoccerPlayerSeason, SoccerTeam, Team
 from sport.serializers.game_serializer import BasketballGameSerializer, BasketballImagesSerializer, \
     BasketballTeamSerializer, LeagueSerializer, SoccerGameSerializer, SoccerImagesSerializer, SoccerTeamSerializer
-from sport.serializers.player_serializer import BasketballPlayerSeasonSerializer, BasketballPlayerSerializer, \
-    PersonSerializer, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
+from sport.serializers.player_serializer import BasketballPlayerImagesSerializer, BasketballPlayerSeasonSerializer, \
+    BasketballPlayerSerializer, SoccerPlayerImagesSerializer, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
 
 
+# TODO: Fix ME!
 class BasketballPlayerStatistics(generics.RetrieveAPIView):
     serializer_class = BasketballPlayerSeasonSerializer
     queryset = BasketballPlayerSeason.objects.all()
 
 
+# TODO: Fix ME!
 class SoccerPlayerStatistics(generics.RetrieveAPIView):
     queryset = SoccerPlayerSeason.objects.all()
     serializer_class = SoccerPlayerSeasonSerializer
 
 
+# Player_id -> Related News
 class PlayerRelatedNews(generics.ListAPIView):
     serializer_class = NewsSerializer
 
@@ -34,6 +37,7 @@ class PlayerRelatedNews(generics.ListAPIView):
         return queryset
 
 
+# Team_id -> Related News
 class TeamRelatedNews(generics.ListAPIView):
     serializer_class = NewsSerializer
 
@@ -46,16 +50,19 @@ class TeamRelatedNews(generics.ListAPIView):
         return queryset
 
 
+# Team_id -> TeamPlayers
 class SoccerTeamPlayers(generics.ListAPIView):
     serializer_class = SoccerPlayerSerializer
 
     def get_queryset(self):
         team_id = self.kwargs['pk']
         team = SoccerTeam.objects.get(id=team_id)
+        # team.soccerplayer_set.all()
         queryset = SoccerPlayer.objects.filter(team=team)
         return queryset
 
 
+# Team_id -> TeamPlayers
 class BasketballTeamPlayers(generics.ListAPIView):
     serializer_class = SoccerPlayerSerializer
 
@@ -65,29 +72,40 @@ class BasketballTeamPlayers(generics.ListAPIView):
         return queryset
 
 
+# Player_id -> PlayerInfo
 class SoccerPlayerInfo(generics.RetrieveAPIView):
     queryset = SoccerPlayer.objects.all()
     serializer_class = SoccerPlayerSerializer
 
 
+# Player_id -> PlayerInfo
 class BasketballPlayerInfo(generics.RetrieveAPIView):
     queryset = BasketballPlayer.objects.all()
     serializer_class = BasketballPlayerSerializer
 
 
+# Game_id -> GameImages
 class SoccerGameImages(generics.RetrieveAPIView):
     queryset = SoccerGame.objects.all()
     serializer_class = SoccerImagesSerializer
 
 
+# Game_id -> GameImages
 class BasketballGameImages(generics.RetrieveAPIView):
     queryset = BasketballGame.objects.all()
     serializer_class = BasketballImagesSerializer
 
 
-class PlayerImages(generics.ListAPIView):
-    serializer_class = PersonSerializer
-    queryset = PlayerImage.objects.all()
+# Player_id -> PlayerImages
+class SoccerPlayerImages(generics.ListAPIView):
+    serializer_class = SoccerPlayerImagesSerializer
+    queryset = SoccerPlayer.objects.all()
+
+
+# Player_id -> PlayerImages
+class BasketballPlayerImages(generics.ListAPIView):
+    serializer_class = BasketballPlayerImagesSerializer
+    queryset = BasketballPlayer.objects.all()
 
 
 class LatestLeagues(generics.ListAPIView):

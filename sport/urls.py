@@ -10,7 +10,10 @@ urlpatterns = [
     path('player/related_news/<int:pk>/', views.PlayerRelatedNews.as_view(), name='player_related_news'),
     path('player/soccer/<int:pk>/', views.SoccerPlayerInfo.as_view(), name='soccer_player_info'),
     path('player/basketball/<int:pk>/', views.BasketballPlayerInfo.as_view(), name='basketball_player_info'),
-    path('person/images/<int:pk>/', views.PlayerImages.as_view(), name='player_images'),
+
+    path('player/soccer/images/<int:pk>/', views.SoccerPlayerImages.as_view(), name='soccer_player_images'),
+    path('player/basketball/images/<int:pk>/', views.BasketballPlayerImages.as_view(), name='basketball_player_images'),
+
     path('players/soccer/<int:pk>/', views.SoccerTeamPlayers.as_view(), name='soccer_team_players'),
     path('players/basketball/<int:pk>/', views.BasketballTeamPlayers.as_view(), name='soccer_team_players'),
 
