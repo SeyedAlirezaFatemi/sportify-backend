@@ -8,7 +8,7 @@ from sport.models import BasketballGame, BasketballPlayer, BasketballTeam, Leagu
     SoccerGame, SoccerPlayer, SoccerTeam, Team
 from sport.serializers.game_serializer import BasketballGameSerializer, BasketballImagesSerializer, \
     BasketballTeamSerializer, LeagueSerializer, SoccerGameSerializer, SoccerImagesSerializer, SoccerTeamSerializer, \
-    SoccerGameStatisticsSerializer, BasketballGameStatisticsSerializer
+    SoccerGameStatisticsSerializer, BasketballGameStatisticsSerializer, GameSerializer
 from sport.serializers.player_serializer import BasketballPlayerImagesSerializer, BasketballPlayerSerializer, \
     BasketballPlayerStatisticsSerializer, SoccerPlayerImagesSerializer, SoccerPlayerSerializer, \
     SoccerPlayerStatisticsSerializer
@@ -48,6 +48,42 @@ class PlayerRelatedNews(generics.ListAPIView):
         name = person.name
         queryset = News.objects.filter(Q(title__contains=name) | Q(brief__contains=name)
                                        | Q(text__contains=name) | Q(tags__title__contains=name))
+        return queryset
+
+
+# basketball game -> related news
+class BasketballGameRelatedNews(generics.ListAPIView):
+    serializer_class = NewsSerializer
+
+    def get_queryset(self):
+        game_id = self.kwargs['pk']
+        game = BasketballGame.objects.get(id=game_id)
+        home_team_name = game.home.team.name
+        away_team_name = game.away.team.name
+
+        queryset = News.objects.filter((Q(title__contains=home_team_name) & Q(title__contains=away_team_name)) |
+                                       (Q(brief__contains=home_team_name) & Q(brief__contains=away_team_name)) |
+                                       (Q(text__contains=home_team_name) & Q(text__contains=away_team_name)) |
+                                       (Q(tags__title__contains=home_team_name) & Q(
+                                           tags__title__contains=away_team_name)))
+        return queryset
+
+
+# soccer game -> related news
+class SoccerGameRelatedNews(generics.ListAPIView):
+    serializer_class = NewsSerializer
+
+    def get_queryset(self):
+        game_id = self.kwargs['pk']
+        game = SoccerGame.objects.get(id=game_id)
+        home_team_name = game.home.team.name
+        away_team_name = game.away.team.name
+
+        queryset = News.objects.filter((Q(title__contains=home_team_name) & Q(title__contains=away_team_name)) |
+                                       (Q(brief__contains=home_team_name) & Q(brief__contains=away_team_name)) |
+                                       (Q(text__contains=home_team_name) & Q(text__contains=away_team_name)) |
+                                       (Q(tags__title__contains=home_team_name) & Q(
+                                           tags__title__contains=away_team_name)))
         return queryset
 
 
