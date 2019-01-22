@@ -7,7 +7,8 @@ from news.serializers import NewsSerializer
 from sport.models import BasketballGame, BasketballPlayer, BasketballTeam, League, Person, \
     SoccerGame, SoccerPlayer, SoccerTeam, Team
 from sport.serializers.game_serializer import BasketballGameSerializer, BasketballImagesSerializer, \
-    BasketballTeamSerializer, LeagueSerializer, SoccerGameSerializer, SoccerImagesSerializer, SoccerTeamSerializer
+    BasketballTeamSerializer, LeagueSerializer, SoccerGameSerializer, SoccerImagesSerializer, SoccerTeamSerializer, \
+    SoccerGameStatisticsSerializer, BasketballGameStatisticsSerializer
 from sport.serializers.player_serializer import BasketballPlayerImagesSerializer, BasketballPlayerSerializer, \
     BasketballPlayerStatisticsSerializer, SoccerPlayerImagesSerializer, SoccerPlayerSerializer, \
     SoccerPlayerStatisticsSerializer
@@ -23,6 +24,18 @@ class BasketballPlayerStatistics(generics.RetrieveAPIView):
 class SoccerPlayerStatistics(generics.RetrieveAPIView):
     serializer_class = SoccerPlayerStatisticsSerializer
     queryset = SoccerPlayer.objects.all()
+
+
+# Game_id -> SoccerGameStatistics
+class SoccerGameStatistics(generics.RetrieveAPIView):
+    serializer_class = SoccerGameStatisticsSerializer
+    queryset = SoccerGame.objects.all()
+
+
+# Game_id -> BasketballGameStatistics
+class BasketballGameStatistics(generics.RetrieveAPIView):
+    serializer_class = BasketballGameStatisticsSerializer
+    queryset = BasketballGame.objects.all()
 
 
 # Player_id -> Related News

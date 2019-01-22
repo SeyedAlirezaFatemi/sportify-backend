@@ -44,5 +44,7 @@ urlpatterns = [
 
     path('games/soccer/latest/<int:pk>/', views.LatestSoccerGames.as_view(), name='latest_soccer_games'),
     path('games/basketball/latest/<int:pk>/', views.LatestBasketballGames.as_view(), name='latest_basketball_games'),
-
+    path('games/basketball/statistics/<int:pk>', views.BasketballGameStatistics.as_view(),
+         name='basketball_game_statistics'),
+    path('games/soccer/statistics/<int:pk>', views.SoccerGameStatistics.as_view(), name='soccer_game_statistics'),
 ]

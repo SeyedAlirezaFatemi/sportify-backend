@@ -52,6 +52,20 @@ class SoccerGameSerializer(ModelSerializer):
         depth = 1
 
 
+class SoccerGameStatisticsSerializer(ModelSerializer):
+    class Meta:
+        model = SoccerGame
+        fields = ('home', 'away',)
+        depth = 1
+
+
+class BasketballGameStatisticsSerializer(ModelSerializer):
+    class Meta:
+        model = BasketballGame
+        fields = ('home', 'away',)
+        depth = 1
+
+
 class BasketballGameSerializer(ModelSerializer):
     class Meta:
         model = BasketballGame
@@ -99,5 +113,3 @@ class BasketballImagesSerializer(ModelSerializer):
         model = BasketballGame
         fields = ('image',)
         depth = 1
-
-
