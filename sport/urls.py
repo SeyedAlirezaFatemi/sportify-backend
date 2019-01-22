@@ -34,22 +34,26 @@ urlpatterns = [
     path('game/soccer/images/<int:pk>/', views.SoccerGameImages.as_view(), name='soccer_game_images'),
     path('game/basketball/images/<int:pk>/', views.BasketballGameImages.as_view(), name='basketball_game_images'),
 
-    path('games/soccer/yesterday/', views.YesterdaySoccerGame.as_view(), name='yesterday_soccer_game'),
-    path('games/soccer/tomorrow/', views.TomorrowSoccerGame.as_view(), name='tomorrow_soccer_game'),
-    path('games/soccer/today/', views.TodaySoccerGame.as_view(), name='today_soccer_game'),
+    path('game/soccer/yesterday/', views.YesterdaySoccerGame.as_view(), name='yesterday_soccer_game'),
+    path('game/soccer/tomorrow/', views.TomorrowSoccerGame.as_view(), name='tomorrow_soccer_game'),
+    path('game/soccer/today/', views.TodaySoccerGame.as_view(), name='today_soccer_game'),
 
-    path('games/basketball/yesterday/', views.YesterdayBasketballGame.as_view(), name='yesterday_basketball_game'),
-    path('games/basketball/tomorrow/', views.TomorrowBasketballGame.as_view(), name='tomorrow_basketball_game'),
-    path('games/basketball/today/', views.TodayBasketballGame.as_view(), name='today_basketball_game'),
+    path('game/basketball/yesterday/', views.YesterdayBasketballGame.as_view(), name='yesterday_basketball_game'),
+    path('game/basketball/tomorrow/', views.TomorrowBasketballGame.as_view(), name='tomorrow_basketball_game'),
+    path('game/basketball/today/', views.TodayBasketballGame.as_view(), name='today_basketball_game'),
 
-    path('games/soccer/latest/<int:pk>/', views.LatestSoccerGames.as_view(), name='latest_soccer_games'),
-    path('games/basketball/latest/<int:pk>/', views.LatestBasketballGames.as_view(), name='latest_basketball_games'),
-    path('games/basketball/statistics/<int:pk>', views.BasketballGameStatistics.as_view(),
+    path('game/soccer/latest/<int:pk>/', views.LatestSoccerGames.as_view(), name='latest_soccer_games'),
+    path('game/basketball/latest/<int:pk>/', views.LatestBasketballGames.as_view(), name='latest_basketball_games'),
+
+    path('game/basketball/statistics/<int:pk>', views.BasketballGameStatistics.as_view(),
          name='basketball_game_statistics'),
-    path('games/soccer/statistics/<int:pk>', views.SoccerGameStatistics.as_view(), name='soccer_game_statistics'),
-    path('games/soccer/related_news/<int:pk>', views.SoccerGameRelatedNews.as_view(), name='soccer_game_related_news'),
-    path('games/basketball/related_news/<int:pk>', views.BasketballGameRelatedNews.as_view(),
+    path('game/soccer/statistics/<int:pk>', views.SoccerGameStatistics.as_view(), name='soccer_game_statistics'),
+
+    path('game/soccer/related_news/<int:pk>', views.SoccerGameRelatedNews.as_view(), name='soccer_game_related_news'),
+    path('game/basketball/related_news/<int:pk>', views.BasketballGameRelatedNews.as_view(),
          name='basketball_game_related_news'),
-    path('games/basketball/events/<int:pk>', views.BasketballEvents.as_view(), name='basketball_game_events'),
-    path('games/soccer/events/<int:pk>', views.SoccerEvents.as_view(), name='soccer_game_events'),
+
+    path('game/basketball/events/<int:pk>', views.BasketballEvents.as_view(), name='basketball_game_events'),
+    path('game/soccer/events/<int:pk>', views.SoccerEvents.as_view(), name='soccer_game_events'),
+
 ]
