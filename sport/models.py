@@ -26,6 +26,8 @@ class SoccerPlayer(Person):
 
 class SoccerPlayerImage(models.Model):
     player = models.ForeignKey(to=SoccerPlayer, related_name='images', on_delete=models.SET_NULL, null=True)
+    address = models.CharField(max_length=1000, null=True)
+    image = models.ImageField()
 
 
 class BasketballPlayer(Person):
@@ -34,6 +36,8 @@ class BasketballPlayer(Person):
 
 class BasketballPlayerImage(models.Model):
     player = models.ForeignKey(to=BasketballPlayer, related_name='images', on_delete=models.SET_NULL, null=True)
+    address = models.CharField(max_length=1000, null=True)
+    image = models.ImageField()
 
 
 class Season(models.Model):
@@ -45,7 +49,7 @@ class Season(models.Model):
 
 
 class SoccerPlayerSeason(Season):
-    player = models.ForeignKey(to=SoccerPlayer, on_delete=models.CASCADE)
+    player = models.ForeignKey(to=SoccerPlayer, related_name='seasons', on_delete=models.CASCADE)
     goals = models.IntegerField(default=0)
     assists = models.IntegerField(default=0)
     reds = models.IntegerField(default=0)
@@ -53,7 +57,7 @@ class SoccerPlayerSeason(Season):
 
 
 class BasketballPlayerSeason(Season):
-    player = models.ForeignKey(to=BasketballPlayer, on_delete=models.CASCADE)
+    player = models.ForeignKey(to=BasketballPlayer, related_name='seasons', on_delete=models.CASCADE)
     twos = models.IntegerField(default=0)
     threes = models.IntegerField(default=0)
     minutes_played = models.IntegerField(default=0)

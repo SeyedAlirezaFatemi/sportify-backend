@@ -57,3 +57,17 @@ class BasketballPlayerImagesSerializer(ModelSerializer):
         model = BasketballPlayer
         fields = ('images',)
         depth = 1
+
+
+class BasketballPlayerStatisticsSerializer(ModelSerializer):
+    class Meta:
+        model = BasketballPlayer
+        fields = ('seasons',)
+        depth = 1
+
+
+class SoccerPlayerStatisticsSerializer(ModelSerializer):
+    class Meta:
+        model = SoccerPlayer
+        fields = ('seasons',)
+        depth = 1

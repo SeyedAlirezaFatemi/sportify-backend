@@ -4,24 +4,25 @@ from rest_framework import generics
 
 from news.models import News
 from news.serializers import NewsSerializer
-from sport.models import BasketballGame, BasketballPlayer, BasketballPlayerSeason, BasketballTeam, League, Person, \
-    SoccerGame, SoccerPlayer, SoccerPlayerSeason, SoccerTeam, Team
+from sport.models import BasketballGame, BasketballPlayer, BasketballTeam, League, Person, \
+    SoccerGame, SoccerPlayer, SoccerTeam, Team
 from sport.serializers.game_serializer import BasketballGameSerializer, BasketballImagesSerializer, \
     BasketballTeamSerializer, LeagueSerializer, SoccerGameSerializer, SoccerImagesSerializer, SoccerTeamSerializer
-from sport.serializers.player_serializer import BasketballPlayerImagesSerializer, BasketballPlayerSeasonSerializer, \
-    BasketballPlayerSerializer, SoccerPlayerImagesSerializer, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
+from sport.serializers.player_serializer import BasketballPlayerImagesSerializer, BasketballPlayerSerializer, \
+    BasketballPlayerStatisticsSerializer, SoccerPlayerImagesSerializer, SoccerPlayerSerializer, \
+    SoccerPlayerStatisticsSerializer
 
 
-# TODO: Fix ME!
+# Player_id -> PlayerStatistics
 class BasketballPlayerStatistics(generics.RetrieveAPIView):
-    serializer_class = BasketballPlayerSeasonSerializer
-    queryset = BasketballPlayerSeason.objects.all()
+    serializer_class = BasketballPlayerStatisticsSerializer
+    queryset = BasketballPlayer.objects.all()
 
 
-# TODO: Fix ME!
+# Player_id -> PlayerStatistics
 class SoccerPlayerStatistics(generics.RetrieveAPIView):
-    queryset = SoccerPlayerSeason.objects.all()
-    serializer_class = SoccerPlayerSeasonSerializer
+    serializer_class = SoccerPlayerStatisticsSerializer
+    queryset = SoccerPlayer.objects.all()
 
 
 # Player_id -> Related News
