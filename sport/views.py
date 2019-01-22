@@ -4,12 +4,12 @@ from rest_framework import generics
 
 from news.models import News
 from news.serializers import NewsSerializer
-from sport.models import *
-from sport.serializers.game_serializer import BasketballImagesSerializer, LeagueSerializer, SoccerImagesSerializer, \
-    SoccerGameSerializer, BasketballGameSerializer, TeamSerializer, BasketballTeamSerializer, SoccerTeamSerializer
-from sport.serializers.player_serializer import *
-from sport.serializers.player_serializer import BasketballPlayerSeason, BasketballPlayerSeasonSerializer, \
-    BasketballPlayerSerializer, SoccerPlayerSeason, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
+from sport.models import BasketballGame, BasketballPlayer, BasketballPlayerSeason, BasketballTeam, League, Person, \
+    PlayerImage, SoccerGame, SoccerPlayer, SoccerPlayerSeason, SoccerTeam, Team
+from sport.serializers.game_serializer import BasketballGameSerializer, BasketballImagesSerializer, \
+    BasketballTeamSerializer, LeagueSerializer, SoccerGameSerializer, SoccerImagesSerializer, SoccerTeamSerializer
+from sport.serializers.player_serializer import BasketballPlayerSeasonSerializer, BasketballPlayerSerializer, \
+    PersonSerializer, SoccerPlayerSeasonSerializer, SoccerPlayerSerializer
 
 
 class BasketballPlayerStatistics(generics.RetrieveAPIView):
@@ -172,9 +172,10 @@ class SoccerTeamGameSchedule(generics.ListAPIView):
     def get_queryset(self):
         team_id = self.kwargs['pk']
         unfinished_team_games = SoccerGame.objects.filter((Q(home__team__id=team_id) |
-                                                          Q(away__team__id=team_id)) & Q(play_date__gte=timezone.now()))
+                                                           Q(away__team__id=team_id)) & Q(
+            play_date__gte=timezone.now()))
         finished_team_games = SoccerGame.objects.filter((Q(home__team__id=team_id) |
-                                                        Q(away__team__id=team_id)) & Q(play_date__lt=timezone.now()))
+                                                         Q(away__team__id=team_id)) & Q(play_date__lt=timezone.now()))
         return unfinished_team_games
 
 
@@ -184,9 +185,9 @@ class BasketballTeamGameSchedule(generics.ListAPIView):
     def get_queryset(self):
         team_id = self.kwargs['pk']
         unfinished_team_games = BasketballGame.objects.filter((Q(home__team__id=team_id) |
-                                                              Q(away__team__id=team_id)) & Q(
+                                                               Q(away__team__id=team_id)) & Q(
             play_date__gte=timezone.now()))
         finished_team_games = BasketballGame.objects.filter((Q(home__team__id=team_id) |
-                                                            Q(away__team__id=team_id)) & Q(
+                                                             Q(away__team__id=team_id)) & Q(
             play_date__lt=timezone.now()))
         return unfinished_team_games
