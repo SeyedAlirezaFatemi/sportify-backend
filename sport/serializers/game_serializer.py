@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from sport.models import BasketballGame, BasketballGameImage, BasketballGameTeamStatistic, \
     BasketballPlayerGameStatistics, BasketballTeam, Game, League, SoccerGame, SoccerGameImage, SoccerGameTeamStatistic, \
@@ -116,6 +116,12 @@ class BasketballImagesSerializer(ModelSerializer):
 
 
 class SoccerEventSerializer(ModelSerializer):
+    event_type = SerializerMethodField()
+
+    def get_event_type(self, obj):
+        print(obj.__dict__)
+        return obj.get_event_type_display()
+
     class Meta:
         model = SoccerEvent
         fields = ('event_time', 'event_type')
@@ -123,6 +129,11 @@ class SoccerEventSerializer(ModelSerializer):
 
 
 class BasketballEventSerializer(ModelSerializer):
+    event_type = SerializerMethodField()
+
+    def get_event_type(self, obj):
+        return obj.get_event_type_display()
+
     class Meta:
         model = BasketballEvent
         fields = ('event_time', 'event_type')
