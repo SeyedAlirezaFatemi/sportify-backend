@@ -25,7 +25,7 @@ class SoccerPlayer(Person):
 
 
 class SoccerPlayerImage(models.Model):
-    player = models.ForeignKey(to=SoccerPlayer, related_name='images', on_delete=models.SET_NULL, null=True)
+    player = models.ForeignKey(to=SoccerPlayer, related_name='images', on_delete=models.CASCADE)
     address = models.CharField(max_length=1000, null=True)
     image = models.ImageField()
 
@@ -35,7 +35,7 @@ class BasketballPlayer(Person):
 
 
 class BasketballPlayerImage(models.Model):
-    player = models.ForeignKey(to=BasketballPlayer, related_name='images', on_delete=models.SET_NULL, null=True)
+    player = models.ForeignKey(to=BasketballPlayer, related_name='images', on_delete=models.CASCADE)
     address = models.CharField(max_length=1000, null=True)
     image = models.ImageField()
 
@@ -92,8 +92,20 @@ class SoccerTeam(Team):
     pass
 
 
+class SoccerTeamImage(models.Model):
+    player = models.ForeignKey(to=SoccerTeam, related_name='images', on_delete=models.CASCADE)
+    address = models.CharField(max_length=1000, null=True)
+    image = models.ImageField()
+
+
 class BasketballTeam(Team):
     pass
+
+
+class BasketballTeamImage(models.Model):
+    player = models.ForeignKey(to=BasketballTeam, related_name='images', on_delete=models.CASCADE)
+    address = models.CharField(max_length=1000, null=True)
+    image = models.ImageField()
 
 
 class SoccerGameTeamStatistic(models.Model):
@@ -134,12 +146,14 @@ class BasketballGame(Game):
 
 
 class SoccerGameImage(models.Model):
-    image = models.ImageField()
     game = models.ForeignKey(to=SoccerGame, related_name='images', on_delete=models.CASCADE)
+    address = models.CharField(max_length=1000, null=True)
+    image = models.ImageField()
 
 
 class BasketballGameImage(models.Model):
     image = models.ImageField()
+    address = models.CharField(max_length=1000, null=True)
     game = models.ForeignKey(to=BasketballGame, related_name='images', on_delete=models.CASCADE)
 
 
