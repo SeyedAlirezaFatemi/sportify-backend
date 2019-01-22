@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from rest_framework import generics
 
@@ -57,7 +58,7 @@ class BasketballGameRelatedNews(generics.ListAPIView):
 
     def get_queryset(self):
         game_id = self.kwargs['pk']
-        game = BasketballGame.objects.get(id=game_id)
+        game = get_object_or_404(BasketballGame, pk=game_id)
         home_team_name = game.home.team.name
         away_team_name = game.away.team.name
 
@@ -75,7 +76,7 @@ class SoccerGameRelatedNews(generics.ListAPIView):
 
     def get_queryset(self):
         game_id = self.kwargs['pk']
-        game = SoccerGame.objects.get(id=game_id)
+        game = get_object_or_404(SoccerGame, pk=game_id)
         home_team_name = game.home.team.name
         away_team_name = game.away.team.name
 

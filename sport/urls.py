@@ -47,4 +47,7 @@ urlpatterns = [
     path('games/basketball/statistics/<int:pk>', views.BasketballGameStatistics.as_view(),
          name='basketball_game_statistics'),
     path('games/soccer/statistics/<int:pk>', views.SoccerGameStatistics.as_view(), name='soccer_game_statistics'),
+    path('games/soccer/related_news/<int:pk>', views.SoccerGameRelatedNews.as_view(), name='soccer_game_related_news'),
+    path('games/basketball/related_news/<int:pk>', views.BasketballGameRelatedNews.as_view(),
+         name='basketball_game_related_news'),
 ]
