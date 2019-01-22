@@ -108,11 +108,13 @@ class BasketballPlayerImages(generics.ListAPIView):
     queryset = BasketballPlayer.objects.all()
 
 
+# Latest Leagues
 class LatestLeagues(generics.ListAPIView):
     serializer_class = LeagueSerializer
     queryset = League.objects.all().order_by('-beginning_year')[:5]
 
 
+# League_id -> LeagueInfo
 class LeagueInfo(generics.RetrieveAPIView):
     serializer_class = LeagueSerializer
     queryset = League.objects.all()
@@ -174,11 +176,13 @@ class LatestBasketballGames(generics.ListAPIView):
     queryset = BasketballGame.objects.all().order_by('-play_date')[:5]
 
 
+# SoccerTeam_id -> SoccerTeamInfo
 class SoccerTeamInfo(generics.RetrieveAPIView):
     queryset = SoccerTeam.objects.all()
     serializer_class = SoccerTeamSerializer
 
 
+# BasketballTeam_id -> SoccerTeamInfo
 class BasketballTeamInfo(generics.RetrieveAPIView):
     queryset = BasketballTeam.objects.all()
     serializer_class = BasketballTeamSerializer
@@ -190,10 +194,11 @@ class SoccerTeamGameSchedule(generics.ListAPIView):
     def get_queryset(self):
         team_id = self.kwargs['pk']
         unfinished_team_games = SoccerGame.objects.filter((Q(home__team__id=team_id) |
-                                                           Q(away__team__id=team_id)) & Q(
-            play_date__gte=timezone.now()))
+                                                           Q(away__team__id=team_id)) &
+                                                          Q(play_date__gte=timezone.now()))
         finished_team_games = SoccerGame.objects.filter((Q(home__team__id=team_id) |
-                                                         Q(away__team__id=team_id)) & Q(play_date__lt=timezone.now()))
+                                                         Q(away__team__id=team_id)) &
+                                                        Q(play_date__lt=timezone.now()))
         return unfinished_team_games
 
 
@@ -203,9 +208,9 @@ class BasketballTeamGameSchedule(generics.ListAPIView):
     def get_queryset(self):
         team_id = self.kwargs['pk']
         unfinished_team_games = BasketballGame.objects.filter((Q(home__team__id=team_id) |
-                                                               Q(away__team__id=team_id)) & Q(
-            play_date__gte=timezone.now()))
+                                                               Q(away__team__id=team_id)) &
+                                                              Q(play_date__gte=timezone.now()))
         finished_team_games = BasketballGame.objects.filter((Q(home__team__id=team_id) |
-                                                             Q(away__team__id=team_id)) & Q(
-            play_date__lt=timezone.now()))
+                                                             Q(away__team__id=team_id)) &
+                                                            Q(play_date__lt=timezone.now()))
         return unfinished_team_games
