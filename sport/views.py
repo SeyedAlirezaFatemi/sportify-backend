@@ -6,11 +6,11 @@ from rest_framework import generics
 from news.models import News
 from news.serializers import NewsSerializer
 from sport.models import BasketballEvent, BasketballGame, BasketballPlayer, BasketballTeam, League, Person, SoccerEvent, \
-    SoccerGame, SoccerPlayer, SoccerTeam, Team
+    SoccerGame, SoccerPlayer, SoccerTeam, Team, BasketballTeamImage, SoccerTeamImage
 from sport.serializers.game_serializer import BasketballEventSerializer, BasketballGameSerializer, \
     BasketballGameStatisticsSerializer, BasketballImagesSerializer, BasketballTeamSerializer, LeagueSerializer, \
     SoccerEventSerializer, SoccerGameSerializer, SoccerGameStatisticsSerializer, SoccerImagesSerializer, \
-    SoccerTeamSerializer
+    SoccerTeamSerializer, BasketballTeamImageSerializer, SoccerTeamImageSerializer
 from sport.serializers.player_serializer import BasketballPlayerImagesSerializer, BasketballPlayerSerializer, \
     BasketballPlayerStatisticsSerializer, SoccerPlayerImagesSerializer, SoccerPlayerSerializer, \
     SoccerPlayerStatisticsSerializer
@@ -286,3 +286,17 @@ class SoccerEvents(generics.ListAPIView):
         game_id = self.kwargs['pk']
         game_events = SoccerEvent.objects.filter(game_id=game_id)
         return game_events
+
+
+class BasketballTeamImages(generics.ListAPIView):
+    serializer_class = BasketballTeamImageSerializer
+
+    def get_queryset(self):
+        return BasketballTeamImage.objects.filter(team_id=self.kwargs['pk'])
+
+
+class SoccerTeamImages(generics.ListAPIView):
+    serializer_class = SoccerTeamImageSerializer
+
+    def get_queryset(self):
+        return SoccerTeamImage.objects.filter(team_id=self.kwargs['pk'])

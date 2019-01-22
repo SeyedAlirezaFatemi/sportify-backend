@@ -2,7 +2,7 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from sport.models import BasketballEvent, BasketballGame, BasketballGameImage, BasketballGameTeamStatistic, \
     BasketballPlayerGameStatistics, BasketballTeam, Game, League, SoccerEvent, SoccerGame, SoccerGameImage, \
-    SoccerGameTeamStatistic, SoccerTeam, Team
+    SoccerGameTeamStatistic, SoccerTeam, Team, SoccerTeamImage, BasketballTeamImage
 
 
 class GameSerializer(ModelSerializer):
@@ -137,4 +137,18 @@ class BasketballEventSerializer(ModelSerializer):
     class Meta:
         model = BasketballEvent
         fields = ('event_time', 'event_type')
+        depth = 1
+
+
+class SoccerTeamImageSerializer(ModelSerializer):
+    class Meta:
+        model = SoccerTeamImage
+        fields = ('address', 'image')
+        depth = 1
+
+
+class BasketballTeamImageSerializer(ModelSerializer):
+    class Meta:
+        model = BasketballTeamImage
+        fields = ('address', 'image')
         depth = 1

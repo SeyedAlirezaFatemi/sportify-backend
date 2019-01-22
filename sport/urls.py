@@ -30,6 +30,8 @@ urlpatterns = [
     path('team/soccer/schedule/<int:pk>/', views.SoccerTeamGameSchedule.as_view(), name='soccer_team_schedule'),
     path('team/basketball/schedule/<int:pk>/', views.BasketballTeamGameSchedule.as_view(),
          name='basketball_team_schedule'),
+    path('team/soccer/images/<int:pk>/', views.SoccerTeamImages.as_view(), name='soccer_team_images'),
+    path('team/basketball/images/<int:pk>/', views.BasketballTeamImages.as_view(), name='basketball_team_images'),
 
     path('game/soccer/images/<int:pk>/', views.SoccerGameImages.as_view(), name='soccer_game_images'),
     path('game/basketball/images/<int:pk>/', views.BasketballGameImages.as_view(), name='basketball_game_images'),

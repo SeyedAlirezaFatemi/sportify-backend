@@ -92,20 +92,20 @@ class SoccerTeam(Team):
     pass
 
 
-class SoccerTeamImage(models.Model):
-    player = models.ForeignKey(to=SoccerTeam, related_name='images', on_delete=models.CASCADE)
-    address = models.CharField(max_length=1000, null=True)
-    image = models.ImageField()
-
-
 class BasketballTeam(Team):
     pass
 
 
-class BasketballTeamImage(models.Model):
-    player = models.ForeignKey(to=BasketballTeam, related_name='images', on_delete=models.CASCADE)
+class SoccerTeamImage(models.Model):
+    team = models.ForeignKey(to=SoccerTeam, related_name='images', on_delete=models.CASCADE)
     address = models.CharField(max_length=1000, null=True)
-    image = models.ImageField()
+    image = models.ImageField(null=True)
+
+
+class BasketballTeamImage(models.Model):
+    team = models.ForeignKey(to=BasketballTeam, related_name='images', on_delete=models.CASCADE)
+    address = models.CharField(max_length=1000, null=True)
+    image = models.ImageField(null=True)
 
 
 class SoccerGameTeamStatistic(models.Model):
