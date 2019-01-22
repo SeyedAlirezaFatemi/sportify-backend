@@ -1,8 +1,6 @@
-import time
-
 from django.utils import timezone
 
-from sport.models import SoccerEvent, SoccerGameTeamStatistic, SoccerTeam, SoccerGame
+from sport.models import SoccerEvent, SoccerGame, SoccerGameTeamStatistic, SoccerTeam
 
 team1 = SoccerTeam(name='Barcelona')
 team2 = SoccerTeam(name='Real Madrid')
