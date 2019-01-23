@@ -2,7 +2,8 @@ from django.utils import timezone
 
 from authentication.models import User
 from news.models import News, Tag
-from sport.models import Person, SoccerGame, SoccerGameTeamStatistic, SoccerPlayer, SoccerPlayerSeason, SoccerTeam
+from sport.models import BasketballPlayer, BasketballTeam, SoccerGame, SoccerGameTeamStatistic, SoccerPlayer, \
+    SoccerPlayerSeason, SoccerTeam
 
 peikan = SoccerTeam(name='Peikan')
 peikan.save()
@@ -18,19 +19,27 @@ tag1 = Tag(title='Lebron')
 tag2 = Tag(title='Lakers')
 tag1.save()
 tag2.save()
+
 user1 = User.objects.get(pk=1)
-user1.save()
+
 news_1 = News(author=user1, title='Lebron James is happy in la', brief='sdsauhda hsjdhasudh ashdhan '
               , text='dasdnaskd uadkjas ndjn asjndkjasn dkj', pub_date=timezone.now())
 news_1.save()
+
 tag3 = Tag(title='Lebron James')
 tag3.save()
+
 news_2 = News(author=user1, title='I am happy in la', brief='sdsauhda hsjdhasudh ashdhan '
               , text='Lebron James uadkjas ndjn asjndkjasn dkj', pub_date=timezone.now())
 news_2.save()
 news_2.tags.add(tag1, tag3)
-lebron = Person(name='Lebron James', age=33, nationality='american', position='FD')
+
+lakers = BasketballTeam(name='Lakers')
+lakers.save()
+
+lebron = BasketballPlayer(team=lakers, name='Lebron James', age=33, nationality='American', position='Shooting Guard')
 lebron.save()
+
 home1 = SoccerGameTeamStatistic(team=peikan, corners=12, fouls=12, goal_attempts=12, goals=12, possession=12.12)
 home1.save()
 

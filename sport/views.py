@@ -46,7 +46,7 @@ class PlayerRelatedNews(generics.ListAPIView):
 
     def get_queryset(self):
         player_id = self.kwargs['pk']
-        person = Person.objects.get(id=player_id)
+        person = get_object_or_404(Person, pk=player_id)
         name = person.name
         queryset = News.objects.filter(Q(title__contains=name) | Q(brief__contains=name)
                                        | Q(text__contains=name) | Q(tags__title__contains=name))
