@@ -129,6 +129,8 @@ class SoccerGameTeamStatistic(models.Model):
     fouls_offside = models.IntegerField(default=0)
     corner_kicks = models.IntegerField(default=0)
     passes = models.IntegerField(default=0)
+    goals = models.IntegerField(default=0)
+    goal_attempts = models.IntegerField(default=0)
     crosses = models.IntegerField(default=0)
     interceptions = models.IntegerField(default=0)
     tackles = models.IntegerField(default=0)
@@ -161,6 +163,7 @@ class BasketballGame(Game):
     away = models.OneToOneField(to=BasketballGameTeamStatistic, related_name='away', on_delete=models.CASCADE)
     starters = models.ManyToManyField(to=BasketballPlayer, related_name='starters')
     bench = models.ManyToManyField(to=BasketballPlayer, related_name='benchs')
+    best_player = models.ForeignKey(to=BasketballPlayer, related_name='bests', on_delete=models.SET_NULL, null=True)
 
 
 class SoccerGameImage(models.Model):
