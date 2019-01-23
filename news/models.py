@@ -18,6 +18,7 @@ class News(models.Model):
     image = models.ImageField()
     tags = models.ManyToManyField(to=Tag)
     related_news = models.ManyToManyField(to="self")
+    sport = models.CharField(max_length=10, default='Basketball')
 
     class Meta:
         ordering = ["pub_date"]
@@ -31,7 +32,7 @@ class Comment(models.Model):
     author = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.CharField(max_length=500)
     pub_date = models.DateTimeField()
-    news = models.ForeignKey(to=News, on_delete=models.CASCADE)
+    news = models.ForeignKey(to=News, related_name='comments', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["pub_date"]

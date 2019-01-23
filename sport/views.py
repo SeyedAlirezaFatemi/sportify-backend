@@ -6,7 +6,7 @@ from rest_framework import generics
 from news.models import News
 from news.serializers import NewsSerializer
 from sport.models import BasketballEvent, BasketballGame, BasketballPlayer, BasketballTeam, BasketballTeamImage, League, \
-    Person, SoccerEvent, SoccerGame, SoccerPlayer, SoccerTeam, SoccerTeamImage, Team
+    Person, SoccerEvent, SoccerGame, SoccerPlayer, SoccerTeam, SoccerTeamImage
 from sport.serializers.game_serializer import BasketballEventSerializer, BasketballGameSerializer, \
     BasketballGameStatisticsSerializer, BasketballImagesSerializer, BasketballTeamImageSerializer, \
     BasketballTeamSerializer, LeagueSerializer, SoccerEventSerializer, SoccerGameSerializer, \
@@ -71,7 +71,7 @@ class BasketballGameRelatedNews(generics.ListAPIView):
         return queryset
 
 
-# soccer game -> related news
+# SoccerGame_id -> RelatedNews
 class SoccerGameRelatedNews(generics.ListAPIView):
     serializer_class = NewsSerializer
 
@@ -90,12 +90,25 @@ class SoccerGameRelatedNews(generics.ListAPIView):
 
 
 # Team_id -> Related News
-class TeamRelatedNews(generics.ListAPIView):
+class SoccerTeamRelatedNews(generics.ListAPIView):
     serializer_class = NewsSerializer
 
     def get_queryset(self):
         team_id = self.kwargs['pk']
-        team = Team.objects.get(id=team_id)
+        team = SoccerTeam.objects.get(id=team_id)
+        name = team.name
+        queryset = News.objects.filter(Q(title__contains=name) | Q(brief__contains=name)
+                                       | Q(text__contains=name) | Q(tags__title__contains=name))
+        return queryset
+
+
+# Team_id -> Related News
+class BasketballTeamRelatedNews(generics.ListAPIView):
+    serializer_class = NewsSerializer
+
+    def get_queryset(self):
+        team_id = self.kwargs['pk']
+        team = BasketballTeam.objects.get(id=team_id)
         name = team.name
         queryset = News.objects.filter(Q(title__contains=name) | Q(brief__contains=name)
                                        | Q(text__contains=name) | Q(tags__title__contains=name))

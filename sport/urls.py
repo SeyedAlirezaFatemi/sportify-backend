@@ -22,7 +22,9 @@ urlpatterns = [
     path('leagues/latest/<int:pk>/', views.LatestLeagues.as_view(), name='latest_leagues'),
     path('league/info/<int:pk>/', views.LeagueInfo.as_view(), name='league_info'),
 
-    path('team/related_news/<int:pk>/', views.TeamRelatedNews.as_view(), name='team_related_news'),
+    path('team/soccer/related_news/<int:pk>/', views.SoccerTeamRelatedNews.as_view(), name='soccer_team_related_news'),
+    path('team/basketball/related_news/<int:pk>/', views.BasketballTeamRelatedNews.as_view(),
+         name='basketball_team_related_news'),
 
     path('team/soccer/info/<int:pk>/', views.SoccerTeamInfo.as_view(), name='soccer_team_info'),
     path('team/basketball/info/<int:pk>/', views.BasketballTeamInfo.as_view(), name='basketball_team_info'),
@@ -47,15 +49,15 @@ urlpatterns = [
     path('game/soccer/latest/<int:pk>/', views.LatestSoccerGames.as_view(), name='latest_soccer_games'),
     path('game/basketball/latest/<int:pk>/', views.LatestBasketballGames.as_view(), name='latest_basketball_games'),
 
-    path('game/basketball/statistics/<int:pk>', views.BasketballGameStatistics.as_view(),
+    path('game/basketball/statistics/<int:pk>/', views.BasketballGameStatistics.as_view(),
          name='basketball_game_statistics'),
-    path('game/soccer/statistics/<int:pk>', views.SoccerGameStatistics.as_view(), name='soccer_game_statistics'),
+    path('game/soccer/statistics/<int:pk>/', views.SoccerGameStatistics.as_view(), name='soccer_game_statistics'),
 
-    path('game/soccer/related_news/<int:pk>', views.SoccerGameRelatedNews.as_view(), name='soccer_game_related_news'),
-    path('game/basketball/related_news/<int:pk>', views.BasketballGameRelatedNews.as_view(),
+    path('game/soccer/related_news/<int:pk>/', views.SoccerGameRelatedNews.as_view(), name='soccer_game_related_news'),
+    path('game/basketball/related_news/<int:pk>/', views.BasketballGameRelatedNews.as_view(),
          name='basketball_game_related_news'),
 
-    path('game/basketball/events/<int:pk>', views.BasketballEvents.as_view(), name='basketball_game_events'),
-    path('game/soccer/events/<int:pk>', views.SoccerEvents.as_view(), name='soccer_game_events'),
+    path('game/basketball/events/<int:pk>/', views.BasketballEvents.as_view(), name='basketball_game_events'),
+    path('game/soccer/events/<int:pk>/', views.SoccerEvents.as_view(), name='soccer_game_events'),
 
 ]
