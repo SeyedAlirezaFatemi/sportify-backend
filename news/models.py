@@ -18,6 +18,7 @@ class News(models.Model):
     image = models.ImageField()
     tags = models.ManyToManyField(to=Tag)
     related_news = models.ManyToManyField(to="self")
+    sport = models.CharField(max_length=10, default='Basketball')
 
     class Meta:
         ordering = ["pub_date"]
