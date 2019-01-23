@@ -183,7 +183,8 @@ class SoccerEvent(models.Model):
         ('GL', 'Goal'),
         ('AT', 'Assist'),
         ('PY', 'Penalty'),
-        ('SN', 'Substitution'),
+        ('SNI', 'Substitution in'),
+        ('SNO', 'Substitution out'),
     )
     event_type = models.CharField(max_length=100, choices=events)
     game = models.ForeignKey(to=SoccerGame, on_delete=models.CASCADE)
