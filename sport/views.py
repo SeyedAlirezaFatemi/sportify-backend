@@ -341,3 +341,19 @@ class BasketballLeagueStats(generics.ListAPIView):
         league_id = self.kwargs['pk']
         queryset = BasketballTeamLeagueStatistic.objects.all().filter(league_id=league_id)
         return queryset
+
+
+# team_id => Soccer Players
+class TeamSoccerPlayers(generics.ListAPIView):
+    serializer_class = SoccerPlayerSerializer
+
+    def get_queryset(self):
+        return SoccerPlayer.objects.filter(team_id=self.kwargs['pk'])
+
+
+# team_id => Basketball Players
+class TeamBasketballPlayers(generics.ListAPIView):
+    serializer_class = BasketballPlayerSerializer
+
+    def get_queryset(self):
+        return BasketballPlayer.objects.filter(team_id=self.kwargs['pk'])
