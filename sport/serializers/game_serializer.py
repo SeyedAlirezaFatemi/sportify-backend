@@ -56,14 +56,14 @@ class SoccerGameStatisticsSerializer(ModelSerializer):
     class Meta:
         model = SoccerGame
         fields = ('home', 'away',)
-        depth = 1
+        depth = 2
 
 
 class BasketballGameStatisticsSerializer(ModelSerializer):
     class Meta:
         model = BasketballGame
         fields = ('home', 'away',)
-        depth = 1
+        depth = 2
 
 
 class BasketballGameSerializer(ModelSerializer):

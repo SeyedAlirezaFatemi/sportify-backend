@@ -110,11 +110,15 @@ class BasketballTeamImage(models.Model):
 
 class SoccerGameTeamStatistic(models.Model):
     team = models.ForeignKey(to=SoccerTeam, on_delete=models.CASCADE)
-    corners = models.IntegerField(default=0)
-    fouls = models.IntegerField(default=0)
-    goal_attempts = models.IntegerField(default=0)
-    goals = models.IntegerField(default=0)
-    possession = models.FloatField(default=0.0)
+    possession = models.IntegerField(default=0)
+    shots_on_target = models.IntegerField(default=0)
+    fouls_offside = models.IntegerField(default=0)
+    corner_kicks = models.IntegerField(default=0)
+    passes = models.IntegerField(default=0)
+    crosses = models.IntegerField(default=0)
+    interceptions = models.IntegerField(default=0)
+    tackles = models.IntegerField(default=0)
+    saves = models.IntegerField(default=0)
 
 
 class BasketballGameTeamStatistic(models.Model):
