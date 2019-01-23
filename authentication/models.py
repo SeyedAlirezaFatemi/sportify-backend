@@ -4,7 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from sport.models import Team, BasketballTeam, SoccerTeam
+from sport.models import BasketballTeam, SoccerTeam, Team
 
 
 class UserManager(BaseUserManager):
