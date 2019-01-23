@@ -73,6 +73,14 @@ class BasketballPlayerSeason(Season):
 
 class League(models.Model):
     name = models.CharField(max_length=100)
+    sports = (
+        ('N', 'None'),
+        ('S', 'Soccer'),
+        ('B', 'Basketball'),
+    )
+    sport = models.CharField(max_length=20, choices=sports, default='Soccer')
+    country = models.CharField(max_length=50, default='Iran')
+    status = models.BooleanField(default=True)
     beginning_year = models.IntegerField()
     end_year = models.IntegerField()
 
@@ -204,3 +212,26 @@ class BasketballPlayerGameStatistics(models.Model):
     minutes_played = models.IntegerField(default=0)
     rebounds = models.IntegerField(default=0)
     fouls = models.IntegerField(default=0)
+
+
+class SoccerTeamLeagueStatistic(models.Model):
+    league = models.ForeignKey(to=League, on_delete=models.CASCADE)
+    team = models.ForeignKey(to=SoccerTeam, on_delete=models.CASCADE)
+    rank = models.IntegerField(default=0)
+    games = models.IntegerField(default=0)
+    win = models.IntegerField(default=0)
+    draw = models.IntegerField(default=0)
+    lose = models.IntegerField(default=0)
+    goal_difference = models.IntegerField(default=0)
+    score = models.IntegerField(default=0)
+
+
+class BasketballTeamLeagueStatistic(models.Model):
+    league = models.ForeignKey(to=League, on_delete=models.CASCADE)
+    team = models.ForeignKey(to=BasketballTeam, on_delete=models.CASCADE)
+    rank = models.IntegerField(default=0)
+    games = models.IntegerField(default=0)
+    win = models.IntegerField(default=0)
+    lose = models.IntegerField(default=0)
+    percentage = models.FloatField(default=0)
+

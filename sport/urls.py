@@ -19,8 +19,11 @@ urlpatterns = [
     path('team/soccer/players/<int:pk>/', views.SoccerTeamPlayers.as_view(), name='soccer_team_players'),
     path('team/basketball/players/<int:pk>/', views.BasketballTeamPlayers.as_view(), name='soccer_team_players'),
 
+    path('leagues/', views.Leagues.as_view(), name='leagues'),
     path('leagues/latest/<int:pk>/', views.LatestLeagues.as_view(), name='latest_leagues'),
     path('league/info/<int:pk>/', views.LeagueInfo.as_view(), name='league_info'),
+    path('league/soccer/stats/<int:pk>/', views.SoccerLeagueStats.as_view(), name='soccer_league_stats'),
+    path('league/basketball/stats/<int:pk>/', views.BasketballLeagueStats.as_view(), name='basketball_league_info'),
 
     path('team/soccer/related_news/<int:pk>/', views.SoccerTeamRelatedNews.as_view(), name='soccer_team_related_news'),
     path('team/basketball/related_news/<int:pk>/', views.BasketballTeamRelatedNews.as_view(),
