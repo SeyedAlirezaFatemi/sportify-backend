@@ -59,9 +59,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
 ]
-
-CORS_ORIGIN_ALLOW_ALL=True
 
 ROOT_URLCONF = 'sportify.urls'
 
@@ -148,3 +147,6 @@ REST_AUTH_SERIALIZERS = {
 REST_AUTH_REGISTER_SERIALIZERS = {
     "REGISTER_SERIALIZER": "authentication.serializers.CustomRegisterSerializer",
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+
