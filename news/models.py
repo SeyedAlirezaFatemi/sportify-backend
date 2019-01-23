@@ -31,7 +31,7 @@ class Comment(models.Model):
     author = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.CharField(max_length=500)
     pub_date = models.DateTimeField()
-    news = models.ForeignKey(to=News, on_delete=models.CASCADE)
+    news = models.ForeignKey(to=News, related_name='comments', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["pub_date"]

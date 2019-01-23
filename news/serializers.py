@@ -9,7 +9,7 @@ class NewsSerializer(ModelSerializer):
 
     class Meta:
         model = News
-        fields = '__all__'
+        fields = ('author', 'title', 'brief', 'text', 'pub_date', 'image', 'tags', 'related_news', 'comments')
         depth = 1
 
 
