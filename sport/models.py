@@ -14,10 +14,16 @@ class Person(models.Model):
         ('M', 'Midfielder'),
         ('SG', 'Shooting Guard'),
         ('PG', 'Point Guard'),
-        ('CR', 'Center')
+        ('CR', 'Center'),
     )
     position = models.CharField(max_length=100, choices=positions)
     avatar = models.ImageField(verbose_name='Avatar')
+    sports = (
+        ('N', 'None'),
+        ('S', 'Soccer'),
+        ('B', 'Basketball'),
+    )
+    sport = models.CharField(max_length=10, choices=sports, default='Soccer')
 
 
 class SoccerPlayer(Person):

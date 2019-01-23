@@ -1,9 +1,14 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from sport.models import BasketballPlayer, BasketballPlayerSeason, Person, Season, SoccerPlayer, SoccerPlayerSeason
 
 
 class PersonSerializer(ModelSerializer):
+    sport = SerializerMethodField()
+
+    def get_sport(self, obj):
+        return obj.get_sport_display()
+
     class Meta:
         model = Person
         fields = "__all__"
