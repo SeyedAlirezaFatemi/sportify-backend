@@ -50,8 +50,8 @@ class PlayerRelatedNews(generics.ListAPIView):
         player_id = self.kwargs['pk']
         person = get_object_or_404(Person, pk=player_id)
         name = person.name
-        queryset = News.objects.filter(Q(title__contains=name) | Q(brief__contains=name)
-                                       | Q(text__contains=name) | Q(tags__title__contains=name))
+        queryset = News.objects.filter(Q(title__icontains=name) | Q(brief__icontains=name)
+                                       | Q(text__icontains=name) | Q(tags__title__icontains=name))
         return queryset
 
 
@@ -65,11 +65,11 @@ class BasketballGameRelatedNews(generics.ListAPIView):
         home_team_name = game.home.team.name
         away_team_name = game.away.team.name
 
-        queryset = News.objects.filter((Q(title__contains=home_team_name) & Q(title__contains=away_team_name)) |
-                                       (Q(brief__contains=home_team_name) & Q(brief__contains=away_team_name)) |
-                                       (Q(text__contains=home_team_name) & Q(text__contains=away_team_name)) |
-                                       (Q(tags__title__contains=home_team_name) & Q(
-                                           tags__title__contains=away_team_name)))
+        queryset = News.objects.filter((Q(title__icontains=home_team_name) & Q(title__icontains=away_team_name)) |
+                                       (Q(brief__icontains=home_team_name) & Q(brief__icontains=away_team_name)) |
+                                       (Q(text__icontains=home_team_name) & Q(text__icontains=away_team_name)) |
+                                       (Q(tags__title__icontains=home_team_name) & Q(
+                                           tags__title__icontains=away_team_name)))
         return queryset
 
 
@@ -83,11 +83,11 @@ class SoccerGameRelatedNews(generics.ListAPIView):
         home_team_name = game.home.team.name
         away_team_name = game.away.team.name
 
-        queryset = News.objects.filter((Q(title__contains=home_team_name) & Q(title__contains=away_team_name)) |
-                                       (Q(brief__contains=home_team_name) & Q(brief__contains=away_team_name)) |
-                                       (Q(text__contains=home_team_name) & Q(text__contains=away_team_name)) |
-                                       (Q(tags__title__contains=home_team_name) & Q(
-                                           tags__title__contains=away_team_name)))
+        queryset = News.objects.filter((Q(title__icontains=home_team_name) & Q(title__icontains=away_team_name)) |
+                                       (Q(brief__icontains=home_team_name) & Q(brief__icontains=away_team_name)) |
+                                       (Q(text__icontains=home_team_name) & Q(text__icontains=away_team_name)) |
+                                       (Q(tags__title__icontains=home_team_name) & Q(
+                                           tags__title__icontains=away_team_name)))
         return queryset
 
 
@@ -97,10 +97,10 @@ class SoccerTeamRelatedNews(generics.ListAPIView):
 
     def get_queryset(self):
         team_id = self.kwargs['pk']
-        team = SoccerTeam.objects.get(id=team_id)
+        team = get_object_or_404(SoccerTeam, pk=team_id)
         name = team.name
-        queryset = News.objects.filter(Q(title__contains=name) | Q(brief__contains=name)
-                                       | Q(text__contains=name) | Q(tags__title__contains=name))
+        queryset = News.objects.filter(Q(title__icontains=name) | Q(brief__icontains=name)
+                                       | Q(text__icontains=name) | Q(tags__title__icontains=name))
         return queryset
 
 
@@ -110,10 +110,10 @@ class BasketballTeamRelatedNews(generics.ListAPIView):
 
     def get_queryset(self):
         team_id = self.kwargs['pk']
-        team = BasketballTeam.objects.get(id=team_id)
+        team = get_object_or_404(BasketballTeam, pk=team_id)
         name = team.name
-        queryset = News.objects.filter(Q(title__contains=name) | Q(brief__contains=name)
-                                       | Q(text__contains=name) | Q(tags__title__contains=name))
+        queryset = News.objects.filter(Q(title__icontains=name) | Q(brief__icontains=name)
+                                       | Q(text__icontains=name) | Q(tags__title__icontains=name))
         return queryset
 
 
@@ -123,8 +123,7 @@ class SoccerTeamPlayers(generics.ListAPIView):
 
     def get_queryset(self):
         team_id = self.kwargs['pk']
-        team = SoccerTeam.objects.get(id=team_id)
-        # team.soccerplayer_set.all()
+        team = get_object_or_404(SoccerTeam, pk=team_id)
         queryset = SoccerPlayer.objects.filter(team=team)
         return queryset
 
