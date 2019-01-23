@@ -302,6 +302,7 @@ class SoccerEvents(generics.ListAPIView):
         return game_events
 
 
+# team_id => team images
 class BasketballTeamImages(generics.ListAPIView):
     serializer_class = BasketballTeamImageSerializer
 
@@ -340,3 +341,6 @@ class BasketballLeagueStats(generics.ListAPIView):
         league_id = self.kwargs['pk']
         queryset = BasketballTeamLeagueStatistic.objects.all().filter(league_id=league_id)
         return queryset
+
+
+
