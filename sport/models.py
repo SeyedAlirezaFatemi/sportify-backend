@@ -235,3 +235,5 @@ class BasketballTeamLeagueStatistic(models.Model):
     win = models.IntegerField(default=0)
     lose = models.IntegerField(default=0)
     percentage = models.FloatField(default=0)
+
+

@@ -4,6 +4,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from sport.models import Team
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -39,6 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    subscribed = models.ManyToManyField(to=Team)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
