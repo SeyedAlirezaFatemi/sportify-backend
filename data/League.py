@@ -1,18 +1,2 @@
 from sport.models import League
 
-league_1 = League(name="LaLiga1", beginning_year=2018, end_year=2019)
-league_2 = League(name="LaLiga2", beginning_year=2017, end_year=2018)
-league_3 = League(name="LaLiga3", beginning_year=2016, end_year=2017)
-league_4 = League(name="LaLiga4", beginning_year=2015, end_year=2016)
-league_5 = League(name="LaLiga5", beginning_year=2014, end_year=2015)
-league_6 = League(name="LaLiga6", beginning_year=2013, end_year=2014)
-league_7 = League(name="LaLiga7", beginning_year=2012, end_year=2013)
-league_8 = League(name="LaLiga8", beginning_year=2011, end_year=2012)
-league_1.save()
-league_2.save()
-league_3.save()
-league_4.save()
-league_5.save()
-league_6.save()
-league_7.save()
-league_8.save()

@@ -1,9 +1,9 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from sport.models import BasketballEvent, BasketballGame, BasketballGameImage, BasketballGameTeamStatistic, \
-    BasketballPlayerGameStatistics, BasketballTeam, BasketballTeamImage, Game, League, SoccerEvent, SoccerGame, \
-    SoccerGameImage, SoccerGameTeamStatistic, SoccerTeam, SoccerTeamImage, Team, BasketballTeamLeagueStatistic, \
-    SoccerTeamLeagueStatistic
+    BasketballPlayerGameStatistics, BasketballTeam, BasketballTeamImage, BasketballTeamLeagueStatistic, Game, League, \
+    SoccerEvent, SoccerGame, SoccerGameImage, SoccerGameTeamStatistic, SoccerTeam, SoccerTeamImage, \
+    SoccerTeamLeagueStatistic, Team
 
 
 class GameSerializer(ModelSerializer):
@@ -167,4 +167,3 @@ class SoccerTeamLeagueStatisticSerializer(ModelSerializer):
         model = SoccerTeamLeagueStatistic
         fields = '__all__'
         depth = 1
-

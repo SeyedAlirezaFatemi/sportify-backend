@@ -5,14 +5,14 @@ from rest_framework import generics
 
 from news.models import News
 from news.serializers import NewsSerializer
-from sport.models import BasketballEvent, BasketballGame, BasketballPlayer, BasketballTeam, BasketballTeamImage, League, \
-    Person, SoccerEvent, SoccerGame, SoccerPlayer, SoccerTeam, SoccerTeamImage, SoccerTeamLeagueStatistic, \
-    BasketballTeamLeagueStatistic
+from sport.models import BasketballEvent, BasketballGame, BasketballPlayer, BasketballTeam, BasketballTeamImage, \
+    BasketballTeamLeagueStatistic, League, Person, SoccerEvent, SoccerGame, SoccerPlayer, SoccerTeam, SoccerTeamImage, \
+    SoccerTeamLeagueStatistic
 from sport.serializers.game_serializer import BasketballEventSerializer, BasketballGameSerializer, \
     BasketballGameStatisticsSerializer, BasketballImagesSerializer, BasketballTeamImageSerializer, \
-    BasketballTeamSerializer, LeagueSerializer, SoccerEventSerializer, SoccerGameSerializer, \
-    SoccerGameStatisticsSerializer, SoccerImagesSerializer, SoccerTeamImageSerializer, SoccerTeamSerializer, \
-    SoccerTeamLeagueStatisticSerializer, BasketballTeamLeagueStatisticSerializer
+    BasketballTeamLeagueStatisticSerializer, BasketballTeamSerializer, LeagueSerializer, SoccerEventSerializer, \
+    SoccerGameSerializer, SoccerGameStatisticsSerializer, SoccerImagesSerializer, SoccerTeamImageSerializer, \
+    SoccerTeamLeagueStatisticSerializer, SoccerTeamSerializer
 from sport.serializers.player_serializer import BasketballPlayerImagesSerializer, BasketballPlayerSerializer, \
     BasketballPlayerStatisticsSerializer, SoccerPlayerImagesSerializer, SoccerPlayerSerializer, \
     SoccerPlayerStatisticsSerializer
@@ -323,26 +323,21 @@ class Leagues(generics.ListAPIView):
     queryset = League.objects.all()
 
 
-# league_id => soccer league statistics
+# League_id => SoccerLeagueStatistics
 class SoccerLeagueStats(generics.ListAPIView):
     serializer_class = SoccerTeamLeagueStatisticSerializer
 
     def get_queryset(self):
         league_id = self.kwargs['pk']
-        queryset = SoccerTeamLeagueStatistic.objects.all()
-        # league = League.objects.get(id=le)
-        queryset.filter(league_id=league_id)
+        queryset = SoccerTeamLeagueStatistic.objects.all().filter(league_id=league_id)
         return queryset
 
 
-# league_id => basketball league statistics
+# League_id => BasketballLeagueStatistics
 class BasketballLeagueStats(generics.ListAPIView):
     serializer_class = BasketballTeamLeagueStatisticSerializer
 
     def get_queryset(self):
         league_id = self.kwargs['pk']
-        queryset = BasketballTeamLeagueStatistic.objects.all()
-        # league = League.objects.get(id=le)
-        queryset.filter(league_id=league_id)
+        queryset = BasketballTeamLeagueStatistic.objects.all().filter(league_id=league_id)
         return queryset
-
