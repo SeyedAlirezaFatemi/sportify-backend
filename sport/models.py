@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.datetime_safe import datetime
 
 
 class Person(models.Model):
@@ -156,6 +157,7 @@ class SoccerGame(Game):
     starters = models.ManyToManyField(to=SoccerPlayer, related_name='starters')
     bench = models.ManyToManyField(to=SoccerPlayer, related_name='benchs')
     best_player = models.ForeignKey(to=SoccerPlayer, related_name='bests', on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField(default=datetime.now())
 
 
 class BasketballGame(Game):
@@ -164,6 +166,7 @@ class BasketballGame(Game):
     starters = models.ManyToManyField(to=BasketballPlayer, related_name='starters')
     bench = models.ManyToManyField(to=BasketballPlayer, related_name='benchs')
     best_player = models.ForeignKey(to=BasketballPlayer, related_name='bests', on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField(default=datetime.now())
 
 
 class SoccerGameImage(models.Model):

@@ -50,7 +50,7 @@ class SoccerGameSerializer(ModelSerializer):
     class Meta:
         model = SoccerGame
         fields = '__all__'
-        depth = 1
+        depth = 2
 
 
 class SoccerGameStatisticsSerializer(ModelSerializer):
@@ -71,7 +71,7 @@ class BasketballGameSerializer(ModelSerializer):
     class Meta:
         model = BasketballGame
         fields = '__all__'
-        depth = 1
+        depth = 2
 
 
 class TeamSerializer(ModelSerializer):
