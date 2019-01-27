@@ -156,6 +156,7 @@ class SoccerGame(Game):
     starters = models.ManyToManyField(to=SoccerPlayer, related_name='starters')
     bench = models.ManyToManyField(to=SoccerPlayer, related_name='benchs')
     best_player = models.ForeignKey(to=SoccerPlayer, related_name='bests', on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField()
 
 
 class BasketballGame(Game):
@@ -164,6 +165,7 @@ class BasketballGame(Game):
     starters = models.ManyToManyField(to=BasketballPlayer, related_name='starters')
     bench = models.ManyToManyField(to=BasketballPlayer, related_name='benchs')
     best_player = models.ForeignKey(to=BasketballPlayer, related_name='bests', on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField()
 
 
 class SoccerGameImage(models.Model):

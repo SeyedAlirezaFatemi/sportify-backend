@@ -261,9 +261,7 @@ class SoccerTeamGameSchedule(generics.ListAPIView):
         team_id = self.kwargs['pk']
         team_games = SoccerGame.objects.filter(Q(home__team__id=team_id) |
                                                Q(away__team__id=team_id)).only('home__team__name',
-                                                                               'away__team__name',
-                                                                               'home__goals',
-                                                                               'away__goals')
+                                                                               'away__team__name')
 
         return team_games
 
@@ -275,9 +273,7 @@ class BasketballTeamGameSchedule(generics.ListAPIView):
         team_id = self.kwargs['pk']
         team_games = BasketballGame.objects.filter(Q(home__team__id=team_id) |
                                                    Q(away__team__id=team_id)).only('home__team__name',
-                                                                                   'away__team__name',
-                                                                                   'home__goals',
-                                                                                   'away__goals')
+                                                                                   'away__team__name')
         return team_games
 
 
