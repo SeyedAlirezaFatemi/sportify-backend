@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
+    'verified_email_field',
     'authentication.apps.AuthenticationConfig',
     'sport.apps.SportConfig',
     'news.apps.NewsConfig',
@@ -129,7 +130,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -161,3 +161,5 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
 )
 
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")

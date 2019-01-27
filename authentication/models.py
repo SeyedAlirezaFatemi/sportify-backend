@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
+from verified_email_field.models import VerifiedEmailField
 
 from sport.models import BasketballTeam, SoccerTeam, Team
 
@@ -39,7 +40,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = None
-    email = models.EmailField(_('email address'), unique=True)
+    email = VerifiedEmailField(_('email address'), unique=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
