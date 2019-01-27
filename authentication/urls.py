@@ -1,6 +1,10 @@
 from django.conf.urls import url
-from rest_framework.authtoken import views
+
+from authentication.views import CreateUserView, CustomAuthToken
 
 urlpatterns = [
-    url(r'^api-token-auth/', views.obtain_auth_token)
+    url('api-token-auth/', CustomAuthToken.as_view()),
+    url('sign_up/', CreateUserView.as_view()),
+    # path('rest-auth/', include('rest_auth.urls')),
+    # path('rest-auth/registration/', include('rest_auth.registration.urls'))
 ]
