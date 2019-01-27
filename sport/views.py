@@ -259,12 +259,12 @@ class SoccerTeamGameSchedule(generics.ListAPIView):
 
     def get_queryset(self):
         team_id = self.kwargs['pk']
-        team_games = SoccerGame.objects.filter(((Q(home__team__id=team_id) |
-                                                 Q(away__team__id=team_id)) &
-                                                Q(play_date__gte=timezone.now()) |
-                                                (Q(home__team__id=team_id) |
-                                                 Q(away__team__id=team_id)) &
-                                                Q(play_date__lt=timezone.now())))
+        team_games = SoccerGame.objects.filter(Q(home__team__id=team_id) |
+                                               Q(away__team__id=team_id)).only('home__team__name',
+                                                                               'away__team__name',
+                                                                               'home__goals',
+                                                                               'away__goals')
+
         return team_games
 
 
@@ -273,12 +273,11 @@ class BasketballTeamGameSchedule(generics.ListAPIView):
 
     def get_queryset(self):
         team_id = self.kwargs['pk']
-        team_games = BasketballGame.objects.filter(((Q(home__team__id=team_id) |
-                                                     Q(away__team__id=team_id)) &
-                                                    Q(play_date__gte=timezone.now()) |
-                                                    (Q(home__team__id=team_id) |
-                                                     Q(away__team__id=team_id)) &
-                                                    Q(play_date__lt=timezone.now())))
+        team_games = BasketballGame.objects.filter(Q(home__team__id=team_id) |
+                                                   Q(away__team__id=team_id)).only('home__team__name',
+                                                                                   'away__team__name',
+                                                                                   'home__goals',
+                                                                                   'away__goals')
         return team_games
 
 
