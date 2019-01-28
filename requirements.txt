@@ -7,6 +7,7 @@ django-cors-headers==2.4.0
 django-filter==2.0.0
 django-rest-auth==0.9.3
 djangorestframework==3.9.0
+django-verified-email-field==1.5.1
 idna==2.8
 Markdown==3.0.1
 oauthlib==3.0.0
