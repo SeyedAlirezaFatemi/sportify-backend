@@ -105,14 +105,14 @@ class LeagueSerializer(ModelSerializer):
 class SoccerImagesSerializer(ModelSerializer):
     class Meta:
         model = SoccerGame
-        fields = ('image',)
+        fields = ('images',)
         depth = 1
 
 
 class BasketballImagesSerializer(ModelSerializer):
     class Meta:
         model = BasketballGame
-        fields = ('image',)
+        fields = ('images',)
         depth = 1
 
 
@@ -152,6 +152,20 @@ class BasketballTeamImageSerializer(ModelSerializer):
     class Meta:
         model = BasketballTeamImage
         fields = ('address', 'image')
+        depth = 1
+
+
+class SoccerTeamImagesSerializer(ModelSerializer):
+    class Meta:
+        model = SoccerTeam
+        fields = ('images',)
+        depth = 1
+
+
+class BasketballTeamImagesSerializer(ModelSerializer):
+    class Meta:
+        model = BasketballTeam
+        fields = ('images',)
         depth = 1
 
 

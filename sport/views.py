@@ -5,13 +5,13 @@ from rest_framework import generics
 
 from news.models import News
 from news.serializers import NewsSerializer
-from sport.models import BasketballEvent, BasketballGame, BasketballPlayer, BasketballTeam, BasketballTeamImage, \
-    BasketballTeamLeagueStatistic, League, Person, SoccerEvent, SoccerGame, SoccerPlayer, SoccerTeam, SoccerTeamImage, \
+from sport.models import BasketballEvent, BasketballGame, BasketballPlayer, BasketballTeam, \
+    BasketballTeamLeagueStatistic, League, Person, SoccerEvent, SoccerGame, SoccerPlayer, SoccerTeam, \
     SoccerTeamLeagueStatistic
 from sport.serializers.game_serializer import BasketballEventSerializer, BasketballGameSerializer, \
-    BasketballGameStatisticsSerializer, BasketballImagesSerializer, BasketballTeamImageSerializer, \
+    BasketballGameStatisticsSerializer, BasketballImagesSerializer, BasketballTeamImagesSerializer, \
     BasketballTeamLeagueStatisticSerializer, BasketballTeamSerializer, LeagueSerializer, SoccerEventSerializer, \
-    SoccerGameSerializer, SoccerGameStatisticsSerializer, SoccerImagesSerializer, SoccerTeamImageSerializer, \
+    SoccerGameSerializer, SoccerGameStatisticsSerializer, SoccerImagesSerializer, SoccerTeamImagesSerializer, \
     SoccerTeamLeagueStatisticSerializer, SoccerTeamSerializer
 from sport.serializers.player_serializer import BasketballPlayerImagesSerializer, BasketballPlayerSerializer, \
     BasketballPlayerStatisticsSerializer, SoccerPlayerImagesSerializer, SoccerPlayerSerializer, \
@@ -297,19 +297,16 @@ class SoccerEvents(generics.ListAPIView):
         return game_events
 
 
-# team_id => team images
-class BasketballTeamImages(generics.ListAPIView):
-    serializer_class = BasketballTeamImageSerializer
-
-    def get_queryset(self):
-        return BasketballTeamImage.objects.filter(team_id=self.kwargs['pk'])
+# Team_id => TeamImages
+class BasketballTeamImages(generics.RetrieveAPIView):
+    serializer_class = BasketballTeamImagesSerializer
+    queryset = BasketballTeam.objects.all()
 
 
-class SoccerTeamImages(generics.ListAPIView):
-    serializer_class = SoccerTeamImageSerializer
-
-    def get_queryset(self):
-        return SoccerTeamImage.objects.filter(team_id=self.kwargs['pk'])
+# Team_id => TeamImages
+class SoccerTeamImages(generics.RetrieveAPIView):
+    serializer_class = SoccerTeamImagesSerializer
+    queryset = SoccerTeam.objects.all()
 
 
 # All leagues
