@@ -413,7 +413,9 @@ news1 = News(author=test_user, title='Big Explosion',
              text="""The official told CNN that Trump's idea is to put something on the table to get Democrats to engage with negotiations.
              Trump is not expected to back down from his demand for a border wall, but the plan will seek to entice Democrats by offering other concessions.
              """
-             , pub_date=timezone.now())
+             , pub_date=timezone.now(),
+             brief="Nobody knows!",
+             image_address='https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Youth-soccer-indiana.jpg/1920px-Youth-soccer-indiana.jpg')
 news1.save()
 news1.tags.add(iran_tag, spain_tag, national_tag)
 news1_comment = Comment(author=test_user, text="Nice!", pub_date=timezone.now(), news=news1)
@@ -424,6 +426,7 @@ news2 = News(author=test_user, title="Jones 'fit and ready' to face Rangers",
              The 24-year-old winger signed a pre-contract agreement with Killie's title rivals last week and will join Rangers on a four-year contract in the summer.
              """
              , pub_date=timezone.now(),
-             brief="Kilmarnock manager Steve Clarke insists he will have no hesitation in playing Jordan Jones against Rangers on Wednesday.")
+             brief="Kilmarnock manager Steve Clarke insists he will have no hesitation in playing Jordan Jones against Rangers on Wednesday.",
+             image_address='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwABkJsTIpRNDyJCIVjEAhL20W7mhC6mg738GUsfTSIzmPoexx')
 news2.save()
 news2.tags.add(national_tag, global_tag, tag_2019)

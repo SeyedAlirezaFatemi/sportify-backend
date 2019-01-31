@@ -28,7 +28,7 @@ class Person(models.Model):
 
 
 class PersonAvatar(models.Model):
-    address = models.CharField(max_length=1000, null=True)
+    address = models.URLField(max_length=1000, null=True)
     image = models.ImageField(null=True)
 
 
@@ -38,7 +38,7 @@ class SoccerPlayer(Person):
 
 class SoccerPlayerImage(models.Model):
     player = models.ForeignKey(to=SoccerPlayer, related_name='images', on_delete=models.CASCADE)
-    address = models.CharField(max_length=1000, null=True)
+    address = models.URLField(max_length=1000, null=True)
     image = models.ImageField()
 
 
@@ -48,7 +48,7 @@ class BasketballPlayer(Person):
 
 class BasketballPlayerImage(models.Model):
     player = models.ForeignKey(to=BasketballPlayer, related_name='images', on_delete=models.CASCADE)
-    address = models.CharField(max_length=1000, null=True)
+    address = models.URLField(max_length=1000, null=True)
     image = models.ImageField()
 
 
@@ -110,7 +110,7 @@ class Team(models.Model):
 
 
 class TeamLogo(models.Model):
-    address = models.CharField(max_length=1000, null=True)
+    address = models.URLField(max_length=1000, null=True)
     image = models.ImageField(null=True)
 
 
@@ -124,13 +124,13 @@ class BasketballTeam(Team):
 
 class SoccerTeamImage(models.Model):
     team = models.ForeignKey(to=SoccerTeam, related_name='images', on_delete=models.CASCADE)
-    address = models.CharField(max_length=1000, null=True)
+    address = models.URLField(max_length=1000, null=True)
     image = models.ImageField(null=True)
 
 
 class BasketballTeamImage(models.Model):
     team = models.ForeignKey(to=BasketballTeam, related_name='images', on_delete=models.CASCADE)
-    address = models.CharField(max_length=1000, null=True)
+    address = models.URLField(max_length=1000, null=True)
     image = models.ImageField(null=True)
 
 
@@ -180,13 +180,13 @@ class BasketballGame(Game):
 
 class SoccerGameImage(models.Model):
     game = models.ForeignKey(to=SoccerGame, related_name='images', on_delete=models.CASCADE)
-    address = models.CharField(max_length=1000, null=True)
+    address = models.URLField(max_length=1000, null=True)
     image = models.ImageField()
 
 
 class BasketballGameImage(models.Model):
     image = models.ImageField()
-    address = models.CharField(max_length=1000, null=True)
+    address = models.URLField(max_length=1000, null=True)
     game = models.ForeignKey(to=BasketballGame, related_name='images', on_delete=models.CASCADE)
 
 

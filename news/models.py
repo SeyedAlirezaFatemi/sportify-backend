@@ -16,6 +16,7 @@ class News(models.Model):
     text = models.CharField(max_length=50000)
     pub_date = models.DateTimeField()
     image = models.ImageField()
+    image_address = models.URLField(null=True)
     tags = models.ManyToManyField(to=Tag)
     related_news = models.ManyToManyField(to="self")
     sport = models.CharField(max_length=10, default='Basketball')

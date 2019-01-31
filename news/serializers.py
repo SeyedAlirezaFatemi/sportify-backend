@@ -19,7 +19,8 @@ class NewsSerializer(ModelSerializer):
     class Meta:
         model = News
         fields = (
-            'id', 'sport', 'author', 'title', 'brief', 'text', 'pub_date', 'image', 'tags', 'related_news', 'comments')
+            'id', 'sport', 'author', 'title', 'brief', 'text', 'pub_date', 'image', 'image_address', 'tags',
+            'related_news', 'comments')
         depth = 2
 
 
