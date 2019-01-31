@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
-    'verified_email_field',
     'authentication.apps.AuthenticationConfig',
     'sport.apps.SportConfig',
     'news.apps.NewsConfig',
