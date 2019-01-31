@@ -1,7 +1,7 @@
 from django.utils import timezone
 
 from authentication.models import User
-from news.models import News, Tag
+from news.models import Comment, News, Tag
 from sport.models import BasketballEvent, BasketballGame, BasketballGameTeamStatistic, BasketballPlayer, \
     BasketballPlayerImage, BasketballPlayerSeason, BasketballTeam, BasketballTeamLeagueStatistic, League, PersonAvatar, \
     SoccerEvent, SoccerGame, SoccerGameTeamStatistic, SoccerPlayer, SoccerPlayerSeason, SoccerTeam, SoccerTeamImage, \
@@ -416,6 +416,8 @@ news1 = News(author=test_user, title='Big Explosion',
              , pub_date=timezone.now())
 news1.save()
 news1.tags.add(iran_tag, spain_tag, national_tag)
+news1_comment = Comment(author=test_user, text="Nice!", pub_date=timezone.now(), news=news1)
+news1_comment.save()
 
 news2 = News(author=test_user, title="Jones 'fit and ready' to face Rangers",
              text="""Kilmarnock manager Steve Clarke insists he will have no hesitation in playing Jordan Jones against Rangers on Wednesday.
