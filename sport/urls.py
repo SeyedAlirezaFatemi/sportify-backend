@@ -10,8 +10,8 @@ urlpatterns = [
 
     path('player/related_news/<int:pk>/', views.PlayerRelatedNews.as_view(), name='player_related_news'),
 
-    path('player/soccer/info/<int:pk>/', views.SoccerPlayerInfo.as_view(), name='soccer_player_info'),
-    path('player/basketball/info/<int:pk>/', views.BasketballPlayerInfo.as_view(), name='basketball_player_info'),
+    path('player/info/soccer/<int:pk>/', views.SoccerPlayerInfo.as_view(), name='soccer_player_info'),
+    path('player/info/basketball/<int:pk>/', views.BasketballPlayerInfo.as_view(), name='basketball_player_info'),
 
     path('player/images/soccer/<int:pk>/', views.SoccerPlayerImages.as_view(), name='soccer_player_images'),
     path('player/images/basketball/<int:pk>/', views.BasketballPlayerImages.as_view(), name='basketball_player_images'),

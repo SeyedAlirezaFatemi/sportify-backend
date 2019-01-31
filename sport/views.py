@@ -163,13 +163,13 @@ class BasketballGameImages(generics.RetrieveAPIView):
 
 
 # Player_id -> PlayerImages
-class SoccerPlayerImages(generics.ListAPIView):
+class SoccerPlayerImages(generics.RetrieveAPIView):
     serializer_class = SoccerPlayerImagesSerializer
     queryset = SoccerPlayer.objects.all()
 
 
 # Player_id -> PlayerImages
-class BasketballPlayerImages(generics.ListAPIView):
+class BasketballPlayerImages(generics.RetrieveAPIView):
     serializer_class = BasketballPlayerImagesSerializer
     queryset = BasketballPlayer.objects.all()
 
