@@ -56,7 +56,6 @@ class CreateUserView(CreateAPIView):
 #         return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 @api_view()
 def confirm_account(request, id, code):
     user = User.objects.get(id=id)

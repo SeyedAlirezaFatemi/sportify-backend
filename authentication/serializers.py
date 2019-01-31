@@ -22,13 +22,7 @@ class CustomRegisterSerializer(RegisterSerializer):
             email=validated_data['email']
         )
         user.set_password(validated_data['password'])
-        generated_conf_code = get_random_string(length=6)
-        user.confirmation_code = generated_conf_code
         user.save()
-        email_message = EmailMessage('Confirm your account!',
-                                     'hiring/confirm_employer/' + str(user.id) + '/' + str(generated_conf_code), '',
-                                     [validated_data['email']])
-        email_message.send()
         return user
 
 
@@ -41,11 +35,17 @@ class UserSerializer(serializers.ModelSerializer):
             email=validated_data['email']
         )
         user.set_password(validated_data['password'])
+        generated_conf_code = get_random_string(length=6)
+        user.confirmation_code = generated_conf_code
         user.save()
+        email_message = EmailMessage('Confirm your account!',
+                                     'hiring/confirm_employer/' + str(user.id) + '/' + str(generated_conf_code), '',
+                                     [validated_data['email']])
+        email_message.send()
         return user
 
     class Meta:
-        model = Use
+        model = User
         fields = ("id", "email", "password",)
 
 
