@@ -39,3 +39,5 @@ class CreateUserView(CreateAPIView):
     serializer_class = UserSerializer
 
 
+def confirm_account(request, id, code):
+    pass
