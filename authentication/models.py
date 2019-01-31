@@ -7,7 +7,6 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
-from verified_email_field.models import VerifiedEmailField
 
 from sport.models import BasketballTeam, SoccerTeam, Team
 
