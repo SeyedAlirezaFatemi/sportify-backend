@@ -41,7 +41,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = None
     email = models.EmailField(_('email address'), unique=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
+    confirmation_code = models.CharField(max_length=6, default='ABCDEF')
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     soccer_subscribed = models.ManyToManyField(to=SoccerTeam)

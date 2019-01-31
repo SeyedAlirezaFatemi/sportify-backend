@@ -1,5 +1,4 @@
 from django.conf.urls import url
-
 from authentication.views import CreateUserView, CustomAuthToken
 
 urlpatterns = [

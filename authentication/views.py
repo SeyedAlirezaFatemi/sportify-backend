@@ -1,9 +1,12 @@
+from django.http import HttpResponse
+from django.shortcuts import render
 from rest_auth.registration.views import RegisterView
 from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
+from rest_framework import generics
 
 from authentication.models import User
 from authentication.serializers import UserSerializer
@@ -34,3 +37,5 @@ class CreateUserView(CreateAPIView):
         permissions.AllowAny  # Or anon users can't register
     ]
     serializer_class = UserSerializer
+
+
