@@ -1,9 +1,10 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from rest_auth.registration.views import RegisterView
 from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.decorators import api_view
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework import generics
@@ -39,5 +40,12 @@ class CreateUserView(CreateAPIView):
     serializer_class = UserSerializer
 
 
+@api_view()
 def confirm_account(request, id, code):
-    pass
+    user = User.objects.get(id=id)
+    activate = False
+    if user.confirmation_code == code:
+        user.is_active = True
+        activate = True
+    response = {'activate': activate}
+    return Response(response)
