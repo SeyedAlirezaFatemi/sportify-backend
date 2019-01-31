@@ -18,13 +18,18 @@ class Person(models.Model):
         ('CR', 'Center'),
     )
     position = models.CharField(max_length=100, choices=positions)
-    avatar = models.ImageField(verbose_name='Avatar')
+    avatar = models.OneToOneField(to='PersonAvatar', on_delete=models.SET_NULL, null=True)
     sports = (
         ('N', 'None'),
         ('S', 'Soccer'),
         ('B', 'Basketball'),
     )
     sport = models.CharField(max_length=10, choices=sports, default='Soccer')
+
+
+class PersonAvatar(models.Model):
+    address = models.CharField(max_length=1000, null=True)
+    image = models.ImageField(null=True)
 
 
 class SoccerPlayer(Person):
@@ -87,7 +92,7 @@ class League(models.Model):
 
 
 class Game(models.Model):
-    play_date = models.DateTimeField()
+    play_date = models.DateTimeField(default=datetime.now())
     league = models.ForeignKey(to=League, on_delete=models.SET_NULL, null=True)
     home_score = models.IntegerField(default=-1)
     away_score = models.IntegerField(default=-1)
@@ -98,9 +103,15 @@ class Game(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=100)
+    logo = models.OneToOneField(to='TeamLogo', on_delete=models.SET_NULL, null=True)
 
     class Meta:
         abstract = True
+
+
+class TeamLogo(models.Model):
+    address = models.CharField(max_length=1000, null=True)
+    image = models.ImageField(null=True)
 
 
 class SoccerTeam(Team):
@@ -157,7 +168,6 @@ class SoccerGame(Game):
     starters = models.ManyToManyField(to=SoccerPlayer, related_name='starters')
     bench = models.ManyToManyField(to=SoccerPlayer, related_name='benchs')
     best_player = models.ForeignKey(to=SoccerPlayer, related_name='bests', on_delete=models.SET_NULL, null=True)
-    date = models.DateTimeField(default=datetime.now())
 
 
 class BasketballGame(Game):
@@ -166,7 +176,6 @@ class BasketballGame(Game):
     starters = models.ManyToManyField(to=BasketballPlayer, related_name='starters')
     bench = models.ManyToManyField(to=BasketballPlayer, related_name='benchs')
     best_player = models.ForeignKey(to=BasketballPlayer, related_name='bests', on_delete=models.SET_NULL, null=True)
-    date = models.DateTimeField(default=datetime.now())
 
 
 class SoccerGameImage(models.Model):

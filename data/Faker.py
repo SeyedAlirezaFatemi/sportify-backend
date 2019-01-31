@@ -3,8 +3,9 @@ from django.utils import timezone
 from authentication.models import User
 from news.models import News, Tag
 from sport.models import BasketballEvent, BasketballGame, BasketballGameTeamStatistic, BasketballPlayer, \
-    BasketballPlayerSeason, BasketballTeam, BasketballTeamLeagueStatistic, League, SoccerEvent, SoccerGame, \
-    SoccerGameTeamStatistic, SoccerPlayer, SoccerPlayerSeason, SoccerTeam, SoccerTeamLeagueStatistic
+    BasketballPlayerImage, BasketballPlayerSeason, BasketballTeam, BasketballTeamLeagueStatistic, League, PersonAvatar, \
+    SoccerEvent, SoccerGame, SoccerGameTeamStatistic, SoccerPlayer, SoccerPlayerSeason, SoccerTeam, SoccerTeamImage, \
+    SoccerTeamLeagueStatistic, TeamLogo
 
 # Times
 now = timezone.now()
@@ -54,58 +55,97 @@ munich_tag.save()
 celtics_tag = Tag(title='Celtics')
 celtics_tag.save()
 # Soccer Teams
-barcelona = SoccerTeam(name='Barcelona')
+barcelona_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/paYnEE8hcrP96neHRNofhQ_96x96.png')
+barcelona_logo.save()
+barcelona = SoccerTeam(name='Barcelona', logo=barcelona_logo)
 barcelona.save()
+barcelona_image_1 = SoccerTeamImage(team=barcelona,
+                                    address="https://secure.i.telegraph.co.uk/multimedia/archive/03459/iranian-womens-foo_3459298b.jpg")
+barcelona_image_1.save()
 
-chelsea = SoccerTeam(name='Chelsea')
+chelsea_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/fhBITrIlbQxhVB6IjxUO6Q_96x96.png')
+chelsea_logo.save()
+chelsea = SoccerTeam(name='Chelsea', logo=chelsea_logo)
 chelsea.save()
 
-liverpool = SoccerTeam(name='Liverpool')
+liverpool_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/0iShHhASp5q1SL4JhtwJiw_96x96.png')
+liverpool_logo.save()
+liverpool = SoccerTeam(name='Liverpool', logo=liverpool_logo)
 liverpool.save()
 
-madrid = SoccerTeam(name='Madrid')
+madrid_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/Th4fAVAZeCJWRcKoLW7koA_96x96.png')
+madrid_logo.save()
+madrid = SoccerTeam(name='Madrid', logo=madrid_logo)
 madrid.save()
 
-munich = SoccerTeam(name='Munich')
+munich_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/-_cmntP5q_pHL7g5LfkRiw_96x96.png')
+munich_logo.save()
+munich = SoccerTeam(name='Munich', logo=munich_logo)
 munich.save()
 
-juventus = SoccerTeam(name='Juventus')
+juventus_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/Lv6xmBlUIpN3GAFhtf6nqQ_96x96.png')
+juventus_logo.save()
+juventus = SoccerTeam(name='Juventus', logo=juventus_logo)
 juventus.save()
 # Basketball Teams
-lakers = BasketballTeam(name='Lakers')
+lakers_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/4ndR-n-gall7_h3f7NYcpQ_96x96.png')
+lakers_logo.save()
+lakers = BasketballTeam(name='Lakers', logo=lakers_logo)
 lakers.save()
 
-celtics = BasketballTeam(name='Celtics')
+celtics_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/GDJBo7eEF8EO5-kDHVpdqw_96x96.png')
+celtics_logo.save()
+celtics = BasketballTeam(name='Celtics', logo=celtics_logo)
 celtics.save()
 
-bucks = BasketballTeam(name='Bucks')
+bucks_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/Wd6xIEIXpfqg9EZC6PAepQ_96x96.png')
+bucks_logo.save()
+bucks = BasketballTeam(name='Bucks', logo=bucks_logo)
 bucks.save()
 
-wizards = BasketballTeam(name='Wizards')
+wizards_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/NBkMJapxft4V5kvufec4Jg_96x96.png')
+wizards_logo.save()
+wizards = BasketballTeam(name='Wizards', logo=wizards_logo)
 wizards.save()
 
-hornets = BasketballTeam(name='Hornets')
+hornets_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/ToeKy5-TrHAnTCl-qhuuHQ_96x96.png')
+hornets_logo.save()
+hornets = BasketballTeam(name='Hornets', logo=hornets_logo)
 hornets.save()
 
-jazz = BasketballTeam(name='Jazz')
+jazz_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/SP_dsmXEKFVZH5N1DQpZ4A_96x96.png')
+jazz_logo.save()
+jazz = BasketballTeam(name='Jazz', logo=jazz_logo)
 jazz.save()
 
-bulls = BasketballTeam(name='Bulls')
+bulls_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/ofjScRGiytT__Flak2j4dg_96x96.png')
+bulls_logo.save()
+bulls = BasketballTeam(name='Bulls', logo=bulls_logo)
 bulls.save()
 
-nets = BasketballTeam(name='Nets')
+nets_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/iishUmO7vbJBE7iK2CZCdw_96x96.png')
+nets_logo.save()
+nets = BasketballTeam(name='Nets', logo=nets_logo)
 nets.save()
 
-suns = BasketballTeam(name='Suns')
+suns_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/pRr87i24KHWH0UuAc5EamQ_96x96.png')
+suns_logo.save()
+suns = BasketballTeam(name='Suns', logo=suns_logo)
 suns.save()
 
-magic = BasketballTeam(name='Magic')
+magic_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/p69oiJ4LDsvCJUDQ3wR9PQ_96x96.png')
+magic_logo.save()
+magic = BasketballTeam(name='Magic', logo=magic_logo)
 magic.save()
 
-pacers = BasketballTeam(name='Pacers')
+pacers_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/andumiE_wrpDpXvUgqCGYQ_96x96.png')
+pacers_logo.save()
+pacers = BasketballTeam(name='Pacers', logo=pacers_logo)
 pacers.save()
 # Soccer Players
-ahmad = SoccerPlayer(team=barcelona, name='Ahmad', age=24, nationality='Iran', position='Defender')
+ahmad_avatar = PersonAvatar(address='http://www.gstatic.com/tv/thumb/persons/501949/501949_v9_ba.jpg')
+ahmad_avatar.save()
+ahmad = SoccerPlayer(team=barcelona, name='Ahmad', age=24, nationality='Iran', position='Defender', avatar=ahmad_avatar)
 ahmad.save()
 
 ahmad_season_1 = SoccerPlayerSeason(player=ahmad, beginning=now,
@@ -124,7 +164,10 @@ ahmad_season_4 = SoccerPlayerSeason(player=ahmad, beginning=days_ago_450,
                                     end=days_ago_600, goals=3, assists=2, reds=1, yellows=3)
 ahmad_season_4.save()
 
-reza = SoccerPlayer(team=barcelona, name='Reza', age=24, nationality='Iran', position='Defender')
+reza_avatar = PersonAvatar(
+    address='http://photo.elcinema.com.s3.amazonaws.com/uploads/_640x_b0b4e6287fb03c275d49a89dfa3f3d751890d25005335be416d627c838e94efe.jpg')
+reza_avatar.save()
+reza = SoccerPlayer(team=barcelona, name='Reza', age=24, nationality='Iran', position='Defender', avatar=reza_avatar)
 reza.save()
 
 reza_season_1 = SoccerPlayerSeason(player=ahmad, beginning=now,
@@ -143,12 +186,30 @@ reza_season_4 = SoccerPlayerSeason(player=ahmad, beginning=days_ago_450,
                                    end=days_ago_600, goals=3, assists=2, reds=1, yellows=3)
 reza_season_4.save()
 # Basketball Players
-lebron = BasketballPlayer(team=lakers, name='Lebron James', age=33, nationality='American', position='Shooting Guard')
+lebron_avatar = PersonAvatar(
+    address='http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1966.png&w=350&h=254')
+lebron_avatar.save()
+lebron = BasketballPlayer(team=lakers, name='Lebron James', age=33, nationality='American', position='Shooting Guard',
+                          avatar=lebron_avatar)
 lebron.save()
+lebron_image_1 = BasketballPlayerImage(player=lebron,
+                                       address='http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1966.png&w=350&h=254')
+lebron_image_1.save()
 
-jordan = BasketballPlayer(team=jazz, name='Michael Jordan', age=33, nationality='American', position='Shooting Guard')
+lebron_image_2 = BasketballPlayerImage(player=lebron,
+                                       address='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUL1G7E51wtejCgJeO8q9skosuwB-84p9ACoYJzfWfr9LqGmSH')
+lebron_image_2.save()
+
+jordan_avatar = PersonAvatar(
+    address='https://images.solecollector.com/complex/image/upload/rzwnlls4oj5bexk0aekf.jpg')
+jordan_avatar.save()
+jordan = BasketballPlayer(team=jazz, name='Michael Jordan', age=33, nationality='American', position='Shooting Guard',
+                          avatar=jordan_avatar)
 jordan.save()
 
+harden_avatar = PersonAvatar(
+    address='https://imagesvc.timeincapp.com/v3/fan/image?url=https%3A%2F%2Fhouseofhouston.com%2Ffiles%2F2015%2F03%2Fjames-harden-nba-houston-rockets-denver-nuggets2.jpg&c=sc&w=850&h=560')
+harden_avatar.save()
 harden = BasketballPlayer(team=magic, name='James Harden', age=34, nationality='Afghanestan', position='Defending')
 harden.save()
 ##########

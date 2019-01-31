@@ -16,14 +16,14 @@ urlpatterns = [
     path('player/images/soccer/<int:pk>/', views.SoccerPlayerImages.as_view(), name='soccer_player_images'),
     path('player/images/basketball/<int:pk>/', views.BasketballPlayerImages.as_view(), name='basketball_player_images'),
 
-    path('team/players/soccer/<int:pk>/', views.SoccerTeamPlayers.as_view(), name='soccer_team_players'),
-    path('team/players/basketball/<int:pk>/', views.BasketballTeamPlayers.as_view(), name='basketball_team_players'),
-
     path('leagues/', views.Leagues.as_view(), name='leagues'),
     path('leagues/latest/<int:pk>/', views.LatestLeagues.as_view(), name='latest_leagues'),
     path('league/info/<int:pk>/', views.LeagueInfo.as_view(), name='league_info'),
     path('league/stats/soccer/<int:pk>/', views.SoccerLeagueStats.as_view(), name='soccer_league_stats'),
     path('league/stats/basketball/<int:pk>/', views.BasketballLeagueStats.as_view(), name='basketball_league_info'),
+
+    path('team/players/soccer/<int:pk>/', views.SoccerTeamPlayers.as_view(), name='soccer_team_players'),
+    path('team/players/basketball/<int:pk>/', views.BasketballTeamPlayers.as_view(), name='basketball_team_players'),
 
     path('team/soccer/related_news/<int:pk>/', views.SoccerTeamRelatedNews.as_view(), name='soccer_team_related_news'),
     path('team/basketball/related_news/<int:pk>/', views.BasketballTeamRelatedNews.as_view(),
