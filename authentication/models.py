@@ -46,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     soccer_subscribed = models.ManyToManyField(to=SoccerTeam)
-    basket_subscribed = models.ManyToManyField(to=BasketballTeam)
+    basketball_subscribed = models.ManyToManyField(to=BasketballTeam)
 
     USERNAME_FIELD = 'email'
 
