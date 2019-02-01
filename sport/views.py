@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from authentication.models import User
 from news.models import News
 from news.serializers import NewsSerializer
+from sport.models import BasketballTeamVideo, PlayerVideo
 from sport.serializers.game_serializer import *
 from sport.serializers.player_serializer import *
 
@@ -301,6 +302,24 @@ class BasketballTeamImages(generics.RetrieveAPIView):
 class SoccerTeamImages(generics.RetrieveAPIView):
     serializer_class = SoccerTeamImagesSerializer
     queryset = SoccerTeam.objects.all()
+
+
+# Team_id -> TeamVideos
+class SoccerTeamVideos(generics.ListAPIView):
+    serializer_class = SoccerTeamVideoSerializer
+    queryset = SoccerTeamVideo.objects.all()
+
+
+# Team_id -> TeamVideos
+class BasketballTeamVideos(generics.ListAPIView):
+    serializer_class = BasketballTeamVideoSerializer
+    queryset = BasketballTeamVideo.objects.all()
+
+
+# Player_id -> PlayerVideos
+class PlayerVideos(generics.ListAPIView):
+    serializer_class = PlayerVideoSerializer
+    queryset = PlayerVideo.objects.all()
 
 
 # All leagues
