@@ -288,7 +288,7 @@ event4.save()
 event5 = SoccerEvent(event_time=timezone.now() + timezone.timedelta(minutes=16), game_id=game1.id, event_type='PY')
 event5.save()
 
-event6 = SoccerEvent(event_time=timezone.now() + timezone.timedelta(minutes=34), game_id=game1.id, event_type='SN')
+event6 = SoccerEvent(event_time=timezone.now() + timezone.timedelta(minutes=34), game_id=game1.id, event_type='SNI')
 event6.save()
 ########## Basketball
 home1 = BasketballGameTeamStatistic(team=magic, twos=120, threes=140, fouls=120, free_throws=980, points=120,
