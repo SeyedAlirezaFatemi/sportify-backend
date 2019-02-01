@@ -68,5 +68,7 @@ urlpatterns = [
 
     path('game/basketball/events/<int:pk>/', views.BasketballEvents.as_view(), name='basketball_game_events'),
     path('game/soccer/events/<int:pk>/', views.SoccerEvents.as_view(), name='soccer_game_events'),
-    
+    path('team/subscribed/soccer/<int:team_id>/', views.is_subscribed_soccer, name='soccer_subscribed'),
+    path('team/subscribed/basketball/<int:team_id>/', views.is_subscribed_basketball, name='basketball_subscribed'),
+
 ]
