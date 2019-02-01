@@ -1,15 +1,10 @@
-from django.core.mail import EmailMessage
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
-from django.utils.crypto import get_random_string
 from rest_auth.registration.views import RegisterView
-from rest_framework import permissions, status, serializers
+from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
-from rest_framework import generics
 
 from authentication.models import User
 from authentication.serializers import UserSerializer
@@ -40,20 +35,6 @@ class CreateUserView(CreateAPIView):
         permissions.AllowAny  # Or anon users can't register
     ]
     serializer_class = UserSerializer
-
-
-# @api_view(['POST'])
-# def create_auth(request):
-#     serialized = UserSerializer(data=request.DATA)
-#     if serialized.is_valid():
-#         User.objects.create_user(
-#             serialized.init_data['email'],
-#             # serialized.init_data['username'],
-#             serialized.init_data['password']
-#         )
-#         return Response(serialized.data, status=status.HTTP_201_CREATED)
-#     else:
-#         return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view()

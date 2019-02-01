@@ -68,5 +68,5 @@ urlpatterns = [
 
     path('game/basketball/events/<int:pk>/', views.BasketballEvents.as_view(), name='basketball_game_events'),
     path('game/soccer/events/<int:pk>/', views.SoccerEvents.as_view(), name='soccer_game_events'),
-    
+
 ]
