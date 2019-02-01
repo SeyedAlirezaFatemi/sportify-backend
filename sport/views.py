@@ -5,17 +5,8 @@ from rest_framework import generics
 
 from news.models import News
 from news.serializers import NewsSerializer
-from sport.models import BasketballEvent, BasketballGame, BasketballPlayer, BasketballTeam, \
-    BasketballTeamLeagueStatistic, League, Person, SoccerEvent, SoccerGame, SoccerPlayer, SoccerTeam, \
-    SoccerTeamLeagueStatistic
-from sport.serializers.game_serializer import BasketballEventSerializer, BasketballGameSerializer, \
-    BasketballGameStatisticsSerializer, BasketballImagesSerializer, BasketballTeamImagesSerializer, \
-    BasketballTeamLeagueStatisticSerializer, BasketballTeamSerializer, LeagueSerializer, SoccerEventSerializer, \
-    SoccerGameSerializer, SoccerGameStatisticsSerializer, SoccerImagesSerializer, SoccerTeamImagesSerializer, \
-    SoccerTeamLeagueStatisticSerializer, SoccerTeamSerializer
-from sport.serializers.player_serializer import BasketballPlayerImagesSerializer, BasketballPlayerSerializer, \
-    BasketballPlayerStatisticsSerializer, SoccerPlayerImagesSerializer, SoccerPlayerSerializer, \
-    SoccerPlayerStatisticsSerializer
+from sport.serializers.game_serializer import *
+from sport.serializers.player_serializer import *
 
 
 # Player_id -> PlayerStatistics

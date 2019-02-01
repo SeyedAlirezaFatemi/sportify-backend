@@ -1,3 +1,5 @@
+from django.core.mail import EmailMessage
+from django.utils.crypto import get_random_string
 from rest_auth.registration.serializers import RegisterSerializer, serializers
 
 from authentication.models import User
@@ -33,12 +35,17 @@ class UserSerializer(serializers.ModelSerializer):
             email=validated_data['email']
         )
         user.set_password(validated_data['password'])
+        generated_conf_code = get_random_string(length=6)
+        user.confirmation_code = generated_conf_code
         user.save()
+        email_message = EmailMessage('Confirm your account!',
+                                     'hiring/confirm_employer/' + str(user.id) + '/' + str(generated_conf_code), '',
+                                     [validated_data['email']])
+        email_message.send()
         return user
 
     class Meta:
         model = User
-        # Tuple of serialized model fields (see link [2])
         fields = ("id", "email", "password",)
 
 
@@ -47,3 +54,5 @@ class CustomUserDetailsSerializer(serializers.ModelSerializer):
         model = User
         fields = ('email',)
         read_only_fields = ('email',)
+
+
