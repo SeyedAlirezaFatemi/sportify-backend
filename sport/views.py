@@ -8,7 +8,6 @@ from rest_framework.response import Response
 from authentication.models import User
 from news.models import News
 from news.serializers import NewsSerializer
-from sport.models import BasketballTeamVideo, PlayerVideo
 from sport.serializers.game_serializer import *
 from sport.serializers.player_serializer import *
 
