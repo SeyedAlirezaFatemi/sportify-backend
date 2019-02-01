@@ -9,4 +9,6 @@ urlpatterns = [
     path('latest/basketball/', views.LatestNewsBasketball.as_view(), name='latest_basketball_news'),
 
     path('detail/<int:pk>/', views.NewsDetail.as_view(), name='news_detail'),
+
+    path('comment/', views.comment, name='comment'),
 ]
