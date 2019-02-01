@@ -2,8 +2,6 @@ from django.urls import path
 
 from . import views
 
-
-
 urlpatterns = [
 
     path('player/statistics/soccer/<int:pk>/', views.SoccerPlayerStatistics.as_view(), name='soccer_player_statistics'),
