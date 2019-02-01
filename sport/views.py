@@ -2,7 +2,10 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from rest_framework import generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
+from authentication.models import User
 from news.models import News
 from news.serializers import NewsSerializer
 from sport.serializers.game_serializer import *
@@ -324,3 +327,27 @@ class BasketballLeagueStats(generics.ListAPIView):
         league_id = self.kwargs['pk']
         queryset = BasketballTeamLeagueStatistic.objects.all().filter(league_id=league_id)
         return queryset
+
+
+@api_view()
+def is_subscribed_soccer(request, team_id):
+    user_id = request.user.id
+    user = User.objects.get(id=user_id)
+    is_subscribed = False
+    subscribed_team = user.soccer_subscribed.all().filter(id=team_id)
+    if subscribed_team:
+        is_subscribed = True
+    response = {'is_subscribed': is_subscribed}
+    return Response(response)
+
+
+@api_view()
+def is_subscribed_basketball(request, team_id):
+    user_id = request.user.id
+    user = User.objects.get(id=user_id)
+    is_subscribed = False
+    subscribed_team = user.basket_subscribed.all().filter(id=team_id)
+    if subscribed_team:
+        is_subscribed = True
+    response = {'is_subscribed': is_subscribed}
+    return Response(response)
