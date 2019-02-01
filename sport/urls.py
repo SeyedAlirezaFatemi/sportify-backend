@@ -44,8 +44,8 @@ urlpatterns = [
     path('team/soccer/players/<int:pk>/', views.SoccerTeamPlayers.as_view(), name='soccer_team_players'),
     path('team/basketball/players/<int:pk>/', views.BasketballTeamPlayers.as_view(), name='basketball_team_players'),
 
-    path('game/soccer/images/<int:pk>/', views.SoccerGameImages.as_view(), name='soccer_game_images'),
-    path('game/basketball/images/<int:pk>/', views.BasketballGameImages.as_view(), name='basketball_game_images'),
+    path('game/images/soccer/<int:pk>/', views.SoccerGameImages.as_view(), name='soccer_game_images'),
+    path('game/images/basketball/<int:pk>/', views.BasketballGameImages.as_view(), name='basketball_game_images'),
 
     path('game/soccer/yesterday/', views.YesterdaySoccerGame.as_view(), name='yesterday_soccer_game'),
     path('game/soccer/tomorrow/', views.TomorrowSoccerGame.as_view(), name='tomorrow_soccer_game'),
