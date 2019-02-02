@@ -2,11 +2,11 @@ from django.utils import timezone
 
 from authentication.models import User
 from news.models import Comment, News, Tag
-from sport.models import BasketballEvent, BasketballGame, BasketballGameTeamStatistic, BasketballPlayer, \
-    BasketballPlayerImage, BasketballPlayerSeason, BasketballTeam, BasketballTeamLeagueStatistic, League, PersonAvatar, \
-    PlayerVideo, SoccerEvent, SoccerGame, SoccerGameTeamStatistic, SoccerGameVideo, SoccerPlayer, SoccerPlayerSeason, \
-    SoccerTeam, SoccerTeamImage, SoccerTeamLeagueStatistic, SoccerTeamVideo, TeamLogo, BasketballGameVideo, \
-    BasketballTeamVideo
+from sport.models import BasketballEvent, BasketballGame, BasketballGameTeamStatistic, BasketballGameVideo, \
+    BasketballPlayer, BasketballPlayerImage, BasketballPlayerSeason, BasketballTeam, BasketballTeamLeagueStatistic, \
+    BasketballTeamVideo, League, PersonAvatar, PlayerVideo, SoccerEvent, SoccerGame, SoccerGameTeamStatistic, \
+    SoccerGameVideo, SoccerPlayer, SoccerPlayerSeason, SoccerTeam, SoccerTeamImage, SoccerTeamLeagueStatistic, \
+    SoccerTeamVideo, TeamLogo
 
 # Times
 now = timezone.now()
@@ -487,3 +487,64 @@ news2 = News(author=test_user, title="Jones 'fit and ready' to face Rangers",
              image_address='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwABkJsTIpRNDyJCIVjEAhL20W7mhC6mg738GUsfTSIzmPoexx')
 news2.save()
 news2.tags.add(national_tag, global_tag, tag_2019)
+
+news3 = News(author=test_user, title="What exactly is Arsenal’s identity under Unai Emery?",
+             text="""Unai Emery has been studying.
+              The primary aspiration this season was always writ large: get Arsenal back into the Champions League any which way.
+               So to try to get the measure of where his team stand, what their chances are and also forage for clues to improvement, he has been busy examining Premier League trends to bring reassurance they are on the right track."""
+             , pub_date=timezone.now(),
+             brief="Eight months after the manager was appointed, evidence of a stylistic shift away from years of Wengerism remains cloudy.",
+             image_address='https://i.guim.co.uk/img/media/17f79d16ca541c22d92e809ad07cd5668631117a/229_3_2771_1662/master/2771.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=686d14f118bd21442978e66c89127c86')
+news3.save()
+news3.tags.add(national_tag, global_tag, tag_2019, tag_rain)
+
+news4 = News(author=test_user, title="Why transfer window was subdued – despite Mike Ashley splurge",
+             text="""Unai Emery has been studying.
+              The primary aspiration this season was always writ large: get Arsenal back into the Champions League any which way.
+               So to try to get the measure of where his team stand, what their chances are and also forage for clues to improvement, he has been busy examining Premier League trends to bring reassurance they are on the right track."""
+             , pub_date=timezone.now(),
+             brief="Most Premier League clubs sticking with their squads as Newcastle finally spend may be a matter of individual circumstances rather than a new trend",
+             image_address='https://i.guim.co.uk/img/media/1cb4721ef2ae41b274c0be9de7567b53d63ded56/0_150_4570_2742/master/4570.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=2328560a25664c857a350f6a7bf370e2')
+news4.save()
+news4.tags.add(national_tag, global_tag, tag_2019, tag_rain)
+
+news5 = News(author=test_user, title="Billy Vunipola: ‘My coolest scar is on my forehead’",
+             text="""Unai Emery has been studying.
+              The primary aspiration this season was always writ large: get Arsenal back into the Champions League any which way.
+               So to try to get the measure of where his team stand, what their chances are and also forage for clues to improvement, he has been busy examining Premier League trends to bring reassurance they are on the right track."""
+             , pub_date=timezone.now(), sport='soccer',
+             brief="The England rugby player, 26, on singing, getting emotional and the joy of winning",
+             image_address='https://i.guim.co.uk/img/media/eeaf71ed7102c16b23027b09678480fb9bb5350e/0_193_5760_3456/master/5760.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=1d837f6408782b805b6cb90c4096003d')
+news5.save()
+news5.tags.add(national_tag, global_tag, tag_2019, tag_rain)
+
+news6 = News(author=test_user, title="England must survive aerial assault and win set-piece battle to stop Irish",
+             text="""Unai Emery has been studying.
+              The primary aspiration this season was always writ large: get Arsenal back into the Champions League any which way.
+               So to try to get the measure of where his team stand, what their chances are and also forage for clues to improvement, he has been busy examining Premier League trends to bring reassurance they are on the right track."""
+             , pub_date=timezone.now(), sport='Soccer',
+             brief="The England rugby player, 26, on singing, getting emotional and the joy of winning",
+             image_address='https://i.guim.co.uk/img/media/90931905203eeace279f5fc927d6239d5d7ad6eb/335_405_2972_1783/master/2972.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=64f2803fcd65bb2137c0d6dc3a946af2')
+news6.save()
+news6.tags.add(national_tag, global_tag, tag_2019, tag_rain)
+
+news7 = News(author=test_user, title="Birmingham gets ready for 2022 Commonwealth Games",
+             text="""“The council has got very excited about it,” said Dave Rollins, who admits he prefers watching darts rather than track and field, hockey or netball.
+              “But most of us round here aren’t sure they’re capable of delivering. They’re in a mess as it is, having to make cuts all over the place.
+              I think they should spend the money on the basics – getting the bins emptied, keeping the place moving.
+               So to try to get the measure of where his team stand, what their chances are and also forage for clues to improvement, he has been busy examining Premier League trends to bring reassurance they are on the right track."""
+             , pub_date=timezone.now(), sport='Soccer',
+             brief="Locals in host city have concerns any benefits will be short term, while others are optimistic the event will unite everyone",
+             image_address='https://i.guim.co.uk/img/media/26056410b95e07deabccfbf1a5a95edc1cfffcbb/0_90_2250_1350/master/2250.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=5756187726e8afe928a17e355211d0e1')
+news7.save()
+news7.tags.add(national_tag, global_tag, tag_2019, tag_rain)
+
+news8 = News(author=test_user, title="'You will behave weirdly': what I learned from becoming an orphan at 25",
+             text="""My parents are dead and my dad died when I was 15 and my mum followed suit 10 years later. I had “completed the set” by the age of 25, and they managed to split up somewhere in the midst of my childhood, too: they never married but they argued like they had, separating when I was 13. “I am an orphan!” I would say to people, as a joke, and they would say: “You’re not an orphan, don’t be sil–” then realise that, yes, actually,
+              I am, and just because I’m not some grubby-faced Oliver-style orphan, flat cap and itchy tweed asking a man for oats, doesn’t mean I’m not an orphan.
+              where his team stand, what their chances are and also forage for clues to improvement, he has been busy examining Premier League trends to bring reassurance they are on the right track."""
+             , pub_date=timezone.now(), sport='Soccer',
+             brief="When I ‘completed the set’, I found there is no single solution to the worst life can throw at you",
+             image_address='https://i.guim.co.uk/img/media/26056410b95e07deabccfbf1a5a95edc1cfffcbb/0_90_2250_1350/master/2250.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=5756187726e8afe928a17e355211d0e1')
+news8.save()
+news8.tags.add(national_tag, global_tag, tag_2019, tag_rain)
