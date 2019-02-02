@@ -228,12 +228,12 @@ class TodayBasketballGame(generics.ListAPIView):
 
 class LatestSoccerGames(generics.ListAPIView):
     serializer_class = SoccerGameSerializer
-    queryset = SoccerGame.objects.all().order_by('-play_date')[:5]
+    queryset = SoccerGame.objects.all().order_by('-play_date')
 
 
 class LatestBasketballGames(generics.ListAPIView):
     serializer_class = BasketballGameSerializer
-    queryset = BasketballGame.objects.all().order_by('-play_date')[:5]
+    queryset = BasketballGame.objects.all().order_by('-play_date')
 
 
 # SoccerTeam_id -> SoccerTeamInfo
