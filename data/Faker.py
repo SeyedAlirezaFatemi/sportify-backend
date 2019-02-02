@@ -4,8 +4,9 @@ from authentication.models import User
 from news.models import Comment, News, Tag
 from sport.models import BasketballEvent, BasketballGame, BasketballGameTeamStatistic, BasketballPlayer, \
     BasketballPlayerImage, BasketballPlayerSeason, BasketballTeam, BasketballTeamLeagueStatistic, League, PersonAvatar, \
-    SoccerEvent, SoccerGame, SoccerGameTeamStatistic, SoccerPlayer, SoccerPlayerSeason, SoccerTeam, SoccerTeamImage, \
-    SoccerTeamLeagueStatistic, TeamLogo
+    PlayerVideo, SoccerEvent, SoccerGame, SoccerGameTeamStatistic, SoccerGameVideo, SoccerPlayer, SoccerPlayerSeason, \
+    SoccerTeam, SoccerTeamImage, SoccerTeamLeagueStatistic, SoccerTeamVideo, TeamLogo, BasketballGameVideo, \
+    BasketballTeamVideo
 
 # Times
 now = timezone.now()
@@ -62,51 +63,89 @@ barcelona.save()
 barcelona_image_1 = SoccerTeamImage(team=barcelona,
                                     address="https://secure.i.telegraph.co.uk/multimedia/archive/03459/iranian-womens-foo_3459298b.jpg")
 barcelona_image_1.save()
+barcelona_video_1 = SoccerTeamVideo(youtube_id='2g811Eo7K8U', soccer_team=barcelona)
+barcelona_video_1.save()
+barcelona_video_2 = SoccerTeamVideo(youtube_id='p28xueW134o', soccer_team=barcelona)
+barcelona_video_2.save()
+barcelona_video_3 = SoccerTeamVideo(youtube_id='c5B8HRA09aw', soccer_team=barcelona)
+barcelona_video_3.save()
 
 chelsea_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/fhBITrIlbQxhVB6IjxUO6Q_96x96.png')
 chelsea_logo.save()
 chelsea = SoccerTeam(name='Chelsea', logo=chelsea_logo)
 chelsea.save()
+chelsea_video_1 = SoccerTeamVideo(youtube_id='U32_-UE3VHM', soccer_team=chelsea)
+chelsea_video_1.save()
+chelsea_video_2 = SoccerTeamVideo(youtube_id='p-S91FoV4bs', soccer_team=chelsea)
+chelsea_video_2.save()
+chelsea_video_3 = SoccerTeamVideo(youtube_id='hWGdRrfgB2s', soccer_team=chelsea)
+chelsea_video_3.save()
 
 liverpool_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/0iShHhASp5q1SL4JhtwJiw_96x96.png')
 liverpool_logo.save()
 liverpool = SoccerTeam(name='Liverpool', logo=liverpool_logo)
 liverpool.save()
+liverpool_video_1 = SoccerTeamVideo(youtube_id='qAhKgMcMhIA', soccer_team=liverpool)
+liverpool_video_1.save()
+liverpool_video_2 = SoccerTeamVideo(youtube_id='ytCrcO_dm7U', soccer_team=liverpool)
+liverpool_video_2.save()
+liverpool_video_3 = SoccerTeamVideo(youtube_id='McuTOy4IBFo', soccer_team=liverpool)
+liverpool_video_3.save()
 
 madrid_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/Th4fAVAZeCJWRcKoLW7koA_96x96.png')
 madrid_logo.save()
 madrid = SoccerTeam(name='Madrid', logo=madrid_logo)
 madrid.save()
+madrid_video_1 = SoccerTeamVideo(youtube_id='awk5LH-SHAo', soccer_team=madrid)
+madrid_video_1.save()
+madrid_video_2 = SoccerTeamVideo(youtube_id='Ktyjqu470wo', soccer_team=madrid)
+madrid_video_2.save()
 
 munich_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/-_cmntP5q_pHL7g5LfkRiw_96x96.png')
 munich_logo.save()
 munich = SoccerTeam(name='Munich', logo=munich_logo)
 munich.save()
+munich_video_1 = SoccerTeamVideo(youtube_id='awk5LH-SHAo', soccer_team=munich)
+munich_video_1.save()
+munich_video_2 = SoccerTeamVideo(youtube_id='Ktyjqu470wo', soccer_team=munich)
+munich_video_2.save()
 
 juventus_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/Lv6xmBlUIpN3GAFhtf6nqQ_96x96.png')
 juventus_logo.save()
 juventus = SoccerTeam(name='Juventus', logo=juventus_logo)
 juventus.save()
+juventus_video_1 = SoccerTeamVideo(youtube_id='Ktyjqu470wo', soccer_team=juventus)
+juventus_video_1.save()
 # Basketball Teams
 lakers_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/4ndR-n-gall7_h3f7NYcpQ_96x96.png')
 lakers_logo.save()
 lakers = BasketballTeam(name='Lakers', logo=lakers_logo)
 lakers.save()
+lakers_video_1 = BasketballTeamVideo(youtube_id='AuJNn43Ws6I', basketball_team=lakers)
+lakers_video_1.save()
+lakers_video_2 = BasketballTeamVideo(youtube_id='HgYDvi_8Cas', basketball_team=lakers)
+lakers_video_2.save()
 
 celtics_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/GDJBo7eEF8EO5-kDHVpdqw_96x96.png')
 celtics_logo.save()
 celtics = BasketballTeam(name='Celtics', logo=celtics_logo)
 celtics.save()
+celtics_video_1 = BasketballTeamVideo(youtube_id='ooyqP_RHmPQ', basketball_team=celtics)
+celtics_video_1.save()
 
 bucks_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/Wd6xIEIXpfqg9EZC6PAepQ_96x96.png')
 bucks_logo.save()
 bucks = BasketballTeam(name='Bucks', logo=bucks_logo)
 bucks.save()
+bucks_video_1 = BasketballTeamVideo(youtube_id='HrWg9quUSeA', basketball_team=celtics)
+bucks_video_1.save()
 
 wizards_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/NBkMJapxft4V5kvufec4Jg_96x96.png')
 wizards_logo.save()
 wizards = BasketballTeam(name='Wizards', logo=wizards_logo)
 wizards.save()
+wizards_video_1 = BasketballTeamVideo(youtube_id='DEYRPOQfRU4', basketball_team=celtics)
+wizards_video_1.save()
 
 hornets_logo = TeamLogo(address='https://ssl.gstatic.com/onebox/media/sports/logos/ToeKy5-TrHAnTCl-qhuuHQ_96x96.png')
 hornets_logo.save()
@@ -147,6 +186,10 @@ ahmad_avatar = PersonAvatar(address='http://www.gstatic.com/tv/thumb/persons/501
 ahmad_avatar.save()
 ahmad = SoccerPlayer(team=barcelona, name='Ahmad', age=24, nationality='Iran', position='Defender', avatar=ahmad_avatar)
 ahmad.save()
+ahmad_video_1 = PlayerVideo(youtube_id='bKDdT_nyP54', player=ahmad)
+ahmad_video_1.save()
+ahmad_video_2 = PlayerVideo(youtube_id='kRlSFm519Bo', player=ahmad)
+ahmad_video_2.save()
 
 ahmad_season_1 = SoccerPlayerSeason(player=ahmad, beginning=now,
                                     end=days_ago_150, goals=10, assists=2, reds=0, yellows=1)
@@ -199,6 +242,10 @@ lebron_image_1.save()
 lebron_image_2 = BasketballPlayerImage(player=lebron,
                                        address='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUL1G7E51wtejCgJeO8q9skosuwB-84p9ACoYJzfWfr9LqGmSH')
 lebron_image_2.save()
+lebron_video_1 = PlayerVideo(youtube_id='HyznrdDSSGM', player=lebron)
+lebron_video_1.save()
+lebron_video_2 = PlayerVideo(youtube_id='AqNDk_UJW4k', player=lebron)
+lebron_video_2.save()
 
 jordan_avatar = PersonAvatar(
     address='https://images.solecollector.com/complex/image/upload/rzwnlls4oj5bexk0aekf.jpg')
@@ -290,6 +337,11 @@ event5.save()
 
 event6 = SoccerEvent(event_time=timezone.now() + timezone.timedelta(minutes=34), game_id=game1.id, event_type='SN')
 event6.save()
+
+soccer_game_video_1 = SoccerGameVideo(youtube_id='WNeLUngb-Xg', game=game1)
+soccer_game_video_1.save()
+soccer_game_video_2 = SoccerGameVideo(youtube_id='78MGzBNHn8k', game=game1)
+soccer_game_video_2.save()
 ########## Basketball
 home1 = BasketballGameTeamStatistic(team=magic, twos=120, threes=140, fouls=120, free_throws=980, points=120,
                                     first_quarter_points=90, second_quarter_points=80, third_quarter_points=40,
@@ -321,6 +373,11 @@ event5.save()
 
 event6 = BasketballEvent(event_time=timezone.now() + timezone.timedelta(minutes=34), game=game1, event_type='SN')
 event6.save()
+
+basketball_game_video_1 = BasketballGameVideo(youtube_id='tIj2ms-lYTI', game=game1)
+basketball_game_video_1.save()
+basketball_game_video_2 = BasketballGameVideo(youtube_id='ZWDkVqEk2mg', game=game1)
+basketball_game_video_2.save()
 # Leagues
 laliga_league = League(name="La Liga", country='Spain', beginning_year=2018, end_year=2019)
 laliga_league.save()

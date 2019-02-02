@@ -190,6 +190,16 @@ class BasketballGameImage(models.Model):
     game = models.ForeignKey(to=BasketballGame, related_name='images', on_delete=models.CASCADE)
 
 
+class SoccerGameVideo(models.Model):
+    youtube_id = models.CharField(max_length=20)
+    game = models.ForeignKey(to=SoccerGame, on_delete=models.CASCADE)
+
+
+class BasketballGameVideo(models.Model):
+    youtube_id = models.CharField(max_length=20)
+    game = models.ForeignKey(to=BasketballGame, on_delete=models.CASCADE)
+
+
 class SoccerEvent(models.Model):
     event_time = models.TimeField(verbose_name='Time')
     events = (

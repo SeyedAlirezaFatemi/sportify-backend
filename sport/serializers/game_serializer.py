@@ -189,7 +189,21 @@ class SoccerTeamVideoSerializer(ModelSerializer):
 
 class BasketballTeamVideoSerializer(ModelSerializer):
     class Meta:
-        model = SoccerTeamVideo
+        model = BasketballTeamVideo
+        fields = '__all__'
+        depth = 1
+
+
+class BasketballGameVideoSerializer(ModelSerializer):
+    class Meta:
+        model = BasketballGameVideo
+        fields = '__all__'
+        depth = 1
+
+
+class SoccerGameVideoSerializer(ModelSerializer):
+    class Meta:
+        model = SoccerGameVideo
         fields = '__all__'
         depth = 1
 

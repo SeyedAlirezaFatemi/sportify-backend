@@ -4,7 +4,6 @@ from django.utils import timezone
 from rest_framework import generics, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.request import Request
 from rest_framework.response import Response
 
 from news.models import News
@@ -324,6 +323,26 @@ class BasketballTeamVideos(generics.ListAPIView):
         return queryset
 
 
+# Game_id -> GameVideos
+class SoccerGameVideos(generics.ListAPIView):
+    serializer_class = SoccerGameVideoSerializer
+
+    def get_queryset(self):
+        game_id = self.kwargs['game_id']
+        queryset = SoccerGameVideo.objects.filter(game_id=game_id)
+        return queryset
+
+
+# Game_id -> GameVideos
+class BasketballGameVideos(generics.ListAPIView):
+    serializer_class = BasketballGameVideoSerializer
+
+    def get_queryset(self):
+        game_id = self.kwargs['game_id']
+        queryset = BasketballGameVideo.objects.filter(game_id=game_id)
+        return queryset
+
+
 # Player_id -> PlayerVideos
 class PlayerVideos(generics.ListAPIView):
     serializer_class = PlayerVideoSerializer
@@ -391,8 +410,12 @@ def subscribe_soccer(request):
     try:
         team_id = request.data['team_id']
         soccer_team = get_object_or_404(SoccerTeam, pk=team_id)
-        subscriber.soccer_subscribed.add(soccer_team)
-        return Response(status=status.HTTP_201_CREATED)
+        if soccer_team not in subscriber.soccer_subscribed.all():
+            subscriber.soccer_subscribed.add(soccer_team)
+            return Response({'is_subscribed': True}, status=status.HTTP_200_OK)
+        else:
+            subscriber.soccer_subscribed.remove(soccer_team)
+            return Response({'is_subscribed': False}, status=status.HTTP_200_OK)
     except KeyError:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -404,7 +427,11 @@ def subscribe_basketball(request):
     try:
         team_id = request.data['team_id']
         basketball_team = get_object_or_404(BasketballTeam, pk=team_id)
-        subscriber.basket_subscribed.add(basketball_team)
-        return Response(status=status.HTTP_201_CREATED)
+        if basketball_team not in subscriber.basketball_subscribed.all():
+            subscriber.basketball_subscribed.add(basketball_team)
+            return Response({'is_subscribed': True}, status=status.HTTP_200_OK)
+        else:
+            subscriber.basketball_subscribed.remove(basketball_team)
+            return Response({'is_subscribed': False}, status=status.HTTP_200_OK)
     except KeyError:
         return Response(status=status.HTTP_400_BAD_REQUEST)
