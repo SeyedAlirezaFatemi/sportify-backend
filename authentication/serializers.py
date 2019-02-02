@@ -40,7 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.confirmation_code = generated_conf_code
         user.save()
         email_message = EmailMessage('Confirm your account!',
-                                     'authentication/confirm_account/' + str(user.id) + '/' + str(generated_conf_code),
+                                     'confirm_account/' + str(user.id) + '/' + str(generated_conf_code),
                                      '', [validated_data['email']])
         email_message.send()
         print(user.id)
