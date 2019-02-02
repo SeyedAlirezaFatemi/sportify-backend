@@ -1,11 +1,11 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
-from rest_framework import generics
-from rest_framework.decorators import api_view
+from rest_framework import generics, status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from authentication.models import User
 from news.models import News
 from news.serializers import NewsSerializer
 from sport.serializers.game_serializer import *
@@ -303,6 +303,36 @@ class SoccerTeamImages(generics.RetrieveAPIView):
     queryset = SoccerTeam.objects.all()
 
 
+# Team_id -> TeamVideos
+class SoccerTeamVideos(generics.ListAPIView):
+    serializer_class = SoccerTeamVideoSerializer
+
+    def get_queryset(self):
+        team_id = self.kwargs['team_id']
+        queryset = SoccerTeamVideo.objects.filter(soccer_team_id=team_id)
+        return queryset
+
+
+# Team_id -> TeamVideos
+class BasketballTeamVideos(generics.ListAPIView):
+    serializer_class = BasketballTeamVideoSerializer
+
+    def get_queryset(self):
+        team_id = self.kwargs['team_id']
+        queryset = BasketballTeamVideo.objects.filter(basketball_team_id=team_id)
+        return queryset
+
+
+# Player_id -> PlayerVideos
+class PlayerVideos(generics.ListAPIView):
+    serializer_class = PlayerVideoSerializer
+
+    def get_queryset(self):
+        player_id = self.kwargs['player_id']
+        queryset = PlayerVideo.objects.filter(player_id=player_id)
+        return queryset
+
+
 # All leagues
 class Leagues(generics.ListAPIView):
     serializer_class = LeagueSerializer
@@ -329,10 +359,10 @@ class BasketballLeagueStats(generics.ListAPIView):
         return queryset
 
 
-@api_view()
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def is_subscribed_soccer(request, team_id):
-    user_id = request.user.id
-    user = User.objects.get(id=user_id)
+    user = request.user
     is_subscribed = False
     subscribed_team = user.soccer_subscribed.all().filter(id=team_id)
     if subscribed_team:
@@ -341,13 +371,47 @@ def is_subscribed_soccer(request, team_id):
     return Response(response)
 
 
-@api_view()
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def is_subscribed_basketball(request, team_id):
-    user_id = request.user.id
-    user = User.objects.get(id=user_id)
+    user = request.user
     is_subscribed = False
-    subscribed_team = user.basket_subscribed.all().filter(id=team_id)
+    subscribed_team = user.basketball_subscribed.all().filter(id=team_id)
     if subscribed_team:
         is_subscribed = True
     response = {'is_subscribed': is_subscribed}
     return Response(response)
+
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
+def subscribe_soccer(request):
+    subscriber = request.user
+    try:
+        team_id = request.data['team_id']
+        soccer_team = get_object_or_404(SoccerTeam, pk=team_id)
+        if soccer_team not in subscriber.soccer_subscribed.all():
+            subscriber.soccer_subscribed.add(soccer_team)
+            return Response({'is_subscribed': True}, status=status.HTTP_200_OK)
+        else:
+            subscriber.soccer_subscribed.remove(soccer_team)
+            return Response({'is_subscribed': False}, status=status.HTTP_200_OK)
+    except KeyError:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
+def subscribe_basketball(request):
+    subscriber = request.user
+    try:
+        team_id = request.data['team_id']
+        basketball_team = get_object_or_404(BasketballTeam, pk=team_id)
+        if basketball_team not in subscriber.basketball_subscribed.all():
+            subscriber.basketball_subscribed.add(basketball_team)
+            return Response({'is_subscribed': True}, status=status.HTTP_200_OK)
+        else:
+            subscriber.basketball_subscribed.remove(basketball_team)
+            return Response({'is_subscribed': False}, status=status.HTTP_200_OK)
+    except KeyError:
+        return Response(status=status.HTTP_400_BAD_REQUEST)

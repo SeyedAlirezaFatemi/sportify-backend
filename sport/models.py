@@ -250,3 +250,18 @@ class BasketballTeamLeagueStatistic(models.Model):
     win = models.IntegerField(default=0)
     lose = models.IntegerField(default=0)
     percentage = models.FloatField(default=0)
+
+
+class SoccerTeamVideo(models.Model):
+    youtube_id = models.CharField(max_length=20)
+    soccer_team = models.ForeignKey(to=SoccerTeam, on_delete=models.CASCADE)
+
+
+class BasketballTeamVideo(models.Model):
+    youtube_id = models.CharField(max_length=20)
+    basketball_team = models.ForeignKey(to=BasketballTeam, on_delete=models.CASCADE)
+
+
+class PlayerVideo(models.Model):
+    youtube_id = models.CharField(max_length=20)
+    player = models.ForeignKey(to=Person, on_delete=models.CASCADE)

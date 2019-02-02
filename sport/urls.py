@@ -44,6 +44,18 @@ urlpatterns = [
     path('team/soccer/players/<int:pk>/', views.SoccerTeamPlayers.as_view(), name='soccer_team_players'),
     path('team/basketball/players/<int:pk>/', views.BasketballTeamPlayers.as_view(), name='basketball_team_players'),
 
+    path('game/images/soccer/<int:pk>/', views.SoccerGameImages.as_view(), name='soccer_game_images'),
+    path('game/images/basketball/<int:pk>/', views.BasketballGameImages.as_view(), name='basketball_game_images'),
+
+    path('team/subscribe/soccer/', views.subscribe_soccer, name='subscribe_soccer'),
+    path('team/subscribe/basketball/', views.subscribe_basketball, name='subscribe_basketball'),
+
+    path('team/subscribed/soccer/<int:team_id>/', views.is_subscribed_soccer, name='soccer_subscribed'),
+    path('team/subscribed/basketball/<int:team_id>/', views.is_subscribed_basketball, name='basketball_subscribed'),
+
+    path('team/videos/soccer/<int:team_id>/', views.SoccerTeamVideos.as_view(), name='soccer_video'),
+    path('team/videos/basketball/<int:team_id>/', views.BasketballTeamVideos.as_view(), name='basketball_video'),
+
     path('game/soccer/images/<int:pk>/', views.SoccerGameImages.as_view(), name='soccer_game_images'),
     path('game/basketball/images/<int:pk>/', views.BasketballGameImages.as_view(), name='basketball_game_images'),
 
@@ -62,8 +74,8 @@ urlpatterns = [
          name='basketball_game_statistics'),
     path('game/statistics/soccer/<int:pk>/', views.SoccerGameStatistics.as_view(), name='soccer_game_statistics'),
 
-    path('game/soccer/related_news/<int:pk>/', views.SoccerGameRelatedNews.as_view(), name='soccer_game_related_news'),
-    path('game/basketball/related_news/<int:pk>/', views.BasketballGameRelatedNews.as_view(),
+    path('game/related_news/soccer/<int:pk>/', views.SoccerGameRelatedNews.as_view(), name='soccer_game_related_news'),
+    path('game/related_news/basketball/<int:pk>/', views.BasketballGameRelatedNews.as_view(),
          name='basketball_game_related_news'),
 
     path('game/basketball/events/<int:pk>/', views.BasketballEvents.as_view(), name='basketball_game_events'),
