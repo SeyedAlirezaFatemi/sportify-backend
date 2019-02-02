@@ -10,6 +10,8 @@ urlpatterns = [
 
     path('player/related_news/<int:pk>/', views.PlayerRelatedNews.as_view(), name='player_related_news'),
 
+    path('player/videos/<int:pk>/', views.PlayerVideos.as_view(), name='player_videos'),
+
     path('player/info/soccer/<int:pk>/', views.SoccerPlayerInfo.as_view(), name='soccer_player_info'),
     path('player/info/basketball/<int:pk>/', views.BasketballPlayerInfo.as_view(), name='basketball_player_info'),
 
