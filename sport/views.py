@@ -323,6 +323,26 @@ class BasketballTeamVideos(generics.ListAPIView):
         return queryset
 
 
+# Game_id -> GameVideos
+class SoccerGameVideos(generics.ListAPIView):
+    serializer_class = SoccerGameVideoSerializer
+
+    def get_queryset(self):
+        game_id = self.kwargs['game_id']
+        queryset = SoccerGameVideo.objects.filter(game_id=game_id)
+        return queryset
+
+
+# Game_id -> GameVideos
+class BasketballGameVideos(generics.ListAPIView):
+    serializer_class = BasketballGameVideoSerializer
+
+    def get_queryset(self):
+        game_id = self.kwargs['game_id']
+        queryset = BasketballGameVideo.objects.filter(game_id=game_id)
+        return queryset
+
+
 # Player_id -> PlayerVideos
 class PlayerVideos(generics.ListAPIView):
     serializer_class = PlayerVideoSerializer

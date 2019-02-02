@@ -76,6 +76,9 @@ urlpatterns = [
          name='basketball_game_statistics'),
     path('game/statistics/soccer/<int:pk>/', views.SoccerGameStatistics.as_view(), name='soccer_game_statistics'),
 
+    path('game/videos/soccer/<int:game_id>/', views.SoccerGameVideos.as_view(), name='soccer_video'),
+    path('game/videos/basketball/<int:game_id>/', views.BasketballGameVideos.as_view(), name='basketball_video'),
+
     path('game/related_news/soccer/<int:pk>/', views.SoccerGameRelatedNews.as_view(), name='soccer_game_related_news'),
     path('game/related_news/basketball/<int:pk>/', views.BasketballGameRelatedNews.as_view(),
          name='basketball_game_related_news'),
