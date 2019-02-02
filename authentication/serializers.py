@@ -31,6 +31,7 @@ class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
     def create(self, validated_data):
+        # super().create(self, validated_data)
         user = User.objects.create(
             email=validated_data['email']
         )
@@ -39,9 +40,12 @@ class UserSerializer(serializers.ModelSerializer):
         user.confirmation_code = generated_conf_code
         user.save()
         email_message = EmailMessage('Confirm your account!',
-                                     'hiring/confirm_employer/' + str(user.id) + '/' + str(generated_conf_code), '',
-                                     [validated_data['email']])
+                                     'authentication/confirm_account/' + str(user.id) + '/' + str(generated_conf_code),
+                                     '', [validated_data['email']])
         email_message.send()
+        print(user.id)
+        print(validated_data['email'])
+        print(generated_conf_code)
         return user
 
     class Meta:
