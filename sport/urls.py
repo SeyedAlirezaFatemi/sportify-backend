@@ -27,8 +27,8 @@ urlpatterns = [
     path('team/players/soccer/<int:pk>/', views.SoccerTeamPlayers.as_view(), name='soccer_team_players'),
     path('team/players/basketball/<int:pk>/', views.BasketballTeamPlayers.as_view(), name='basketball_team_players'),
 
-    path('team/soccer/related_news/<int:pk>/', views.SoccerTeamRelatedNews.as_view(), name='soccer_team_related_news'),
-    path('team/basketball/related_news/<int:pk>/', views.BasketballTeamRelatedNews.as_view(),
+    path('team/related_news/soccer/<int:pk>/', views.SoccerTeamRelatedNews.as_view(), name='soccer_team_related_news'),
+    path('team/related_news/basketball/<int:pk>/', views.BasketballTeamRelatedNews.as_view(),
          name='basketball_team_related_news'),
 
     path('team/images/basketball/<int:pk>', views.BasketballTeamImages.as_view(), name='basketball_team_images'),
@@ -83,8 +83,8 @@ urlpatterns = [
     path('game/related_news/basketball/<int:pk>/', views.BasketballGameRelatedNews.as_view(),
          name='basketball_game_related_news'),
 
-    path('game/basketball/events/<int:pk>/', views.BasketballEvents.as_view(), name='basketball_game_events'),
-    path('game/soccer/events/<int:pk>/', views.SoccerEvents.as_view(), name='soccer_game_events'),
+    path('game/events/basketball/<int:pk>/', views.BasketballEvents.as_view(), name='basketball_game_events'),
+    path('game/events/soccer/<int:pk>/', views.SoccerEvents.as_view(), name='soccer_game_events'),
     path('team/subscribed/soccer/<int:team_id>/', views.is_subscribed_soccer, name='soccer_subscribed'),
     path('team/subscribed/basketball/<int:team_id>/', views.is_subscribed_basketball, name='basketball_subscribed'),
 
